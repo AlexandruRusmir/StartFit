@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="initial commit">
+      <change afterPath="$PROJECT_DIR$/application/config/navItems.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/views/exerciseTemplate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/styles/formStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Controller/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Controller/Register.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/Register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Controller/Standard.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/Standard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/templates/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/styles/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/auth/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/auth/config/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/orm/classes/Kohana/Auth/ORM.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/orm/classes/Kohana/Auth/ORM.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/orm/classes/Kohana/ORM.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/orm/classes/Kohana/ORM.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="29FMGrlc8p1HueInzkwjbHOsI6m" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Git.Branch.Popup.ShowAllRepositories": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/MentorshipExerciseees",
+    "list.type.of.created.stylesheet": "CSS",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\kohana\html\images" />
+      <recent name="C:\xampp\htdocs\kohana\application\config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\kohana\application\views\templates" />
+      <recent name="C:\xampp\htdocs\kohana\application\views" />
+      <recent name="C:\xampp\htdocs\kohana" />
+      <recent name="C:\xampp\htdocs\kohana\application\classes\Model" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="" />
+      <created>1652704287347</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652704287347</updated>
+      <workItem from="1652704288826" duration="5794000" />
+      <workItem from="1652781709504" duration="9940000" />
+      <workItem from="1652859970104" duration="10890000" />
+      <workItem from="1652884278559" duration="810000" />
+      <workItem from="1652897862277" duration="18000" />
+      <workItem from="1652935541911" duration="275000" />
+      <workItem from="1652935829945" duration="1093000" />
+      <workItem from="1652937104861" duration="8744000" />
+      <workItem from="1652977833488" duration="3165000" />
+      <workItem from="1653029966925" duration="7251000" />
+      <workItem from="1653281240371" duration="1876000" />
+      <workItem from="1653291061979" duration="4885000" />
+      <workItem from="1653308202868" duration="10754000" />
+    </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1652860204924</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1652860204924</updated>
+    </task>
+    <task id="LOCAL-00002" summary="initial commit">
+      <created>1652860231500</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1652860231500</updated>
+    </task>
+    <task id="LOCAL-00003" summary="initial commit">
+      <created>1652962716300</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652962716300</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/modules/auth" />
+      <path value="$PROJECT_DIR$/modules/cache" />
+      <path value="$PROJECT_DIR$/modules/codebench" />
+      <path value="$PROJECT_DIR$/modules/database" />
+      <path value="$PROJECT_DIR$/modules/image" />
+      <path value="$PROJECT_DIR$/modules/minion" />
+      <path value="$PROJECT_DIR$/modules/orm" />
+      <path value="$PROJECT_DIR$/modules/unittest" />
+      <path value="$PROJECT_DIR$/modules/userguide" />
+      <path value="$PROJECT_DIR$/system" />
+    </ignored-roots>
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+  </component>
+</project>

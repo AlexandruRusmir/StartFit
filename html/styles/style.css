@@ -1,0 +1,141 @@
+/* Add a black background color to the top navigation */
+* {
+    font-family: Trebuchet MS;
+}
+
+.container{
+    margin-top: 10%;
+}
+
+h1 {
+    color: #111;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+}
+h3 {
+    color: #111;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+}
+
+.centered {
+    margin: 0 auto;
+}
+
+.badge {
+    padding: 0 8px;
+    background: #333333;
+    color: #e7ffef;
+    border-radius: 50px;
+}
+
+.custom-active {
+    background-color: #04AA6D;
+    color: #ffffff;
+    border-radius: 15px;
+}
+
+.table-content {
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+.table-content td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 15px;
+}
+
+.table-content tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.table-content tr:hover {
+    background-color: #ddd;
+}
+
+.table-content th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.general {
+    text-align: justify;
+    padding: 4%;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #f2f2f2;
+}
+footer .a{
+    color: #04AA6D;
+}
+
+.blog-list {
+    margintop: 10%;
+    margin-bottom: 2%;
+    padding: .3rem;
+    background-color: #eee;
+    border-radius: 20px;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+.blog-list > h1,
+.blog-details {
+    margin: .5rem;
+    padding: .3rem;
+    font-size: 1.2rem;
+}
+
+.blog-details > h2,
+.blog-details > p {
+    margin: .2rem;
+    font-size: 1rem;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical
+}
+
+/* Add a background color and some padding around the form */
+
+.custom-service {
+    background: #b1dfbb;
+    border-radius: 20px;
+    text-align: center;
+}
+
+nav.opeeen + .container{
+    padding-top: 100px;
+}
+
+
+
+@media (max-width: 1000px) {
+    .container {
+        margin-top: 20%;
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        margin-top: 70%;
+    }
+}
