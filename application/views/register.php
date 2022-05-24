@@ -26,7 +26,8 @@
     </div>
 
     <div style="display: flex">
-        <p class="login-register-text">Already have an account? <a href=" <?= URL::site('register/index'); ?> ">Login here</a>.</p>
+        <p class="login-register-text">Already have an account?
+            <a href=" <?= URL::site('register/index'); ?> ">Login here</a>.</p>
     </div>
 
 </form>

@@ -33,8 +33,22 @@ h3 {
     border-radius: 50px;
 }
 
+.logout {
+    background-color: #ff4c4c;
+    padding: 0 20px;
+    color: #ffffff;
+    border-radius: 20px;
+}
+
+.login {
+    background-color: #ff4c4c;
+    padding: 0 30px;
+    color: #ffffff;
+    border-radius: 20px;
+}
+
 .custom-active {
-    background-color: #04AA6D;
+    background-color: #ff4c4c;
     color: #ffffff;
     border-radius: 15px;
 }
@@ -62,7 +76,7 @@ h3 {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
+    background-color: #ff4c4c;
     color: white;
 }
 
@@ -78,7 +92,7 @@ footer {
     color: #f2f2f2;
 }
 footer .a{
-    color: #04AA6D;
+    color: #ff4c4c;
 }
 
 .blog-list {

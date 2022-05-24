@@ -1,4 +1,22 @@
 <?php
+
+    function addSpecialClass(string $name): string
+    {
+        if($name === 'Login')
+            return 'login';
+        if($name === 'Logout')
+            return 'logout';
+        return '';
+    }
+
+    function navBarElementHTML(array $element): string
+    {
+        return "<li class='nav-item'>
+                    <a class='nav-link " . addSpecialClass($element['name']) .
+                        "' href='${element['url']}'> ${element["name"]} </a>
+                </li>";
+    }
+
     $navBarElements = $navBarElements ?? null;
 ?>
 
@@ -10,12 +28,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href=" <?= URL::site('index/index') ?> ">Home</a>
-            </li>
             <?php
                 forEach($navBarElements as $element) {
-                    echo $element['name'];
+                    echo navBarElementHTML($element);
                 }
             ?>
         </ul>

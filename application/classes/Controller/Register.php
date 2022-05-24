@@ -33,15 +33,13 @@ class Controller_Register extends Controller_Standard {
             $userModel->save();
 
             $userModel->add('roles', ORM::factory('role')->where('name', '=', 'login')->find());
-            Auth::instance()->login($userModel->username, $userModel->password, true);
-
-            Controller::redirect('index/index');
         }
         catch (Exception $e) {
             print_r( $e->getMessage());
             die();
         }
-        //HTTP::redirect('/');
+        Auth::instance()->login($userName, $password, true);
+        Controller::redirect('index/index');
     }
 
     public function action_login()
@@ -63,11 +61,18 @@ class Controller_Register extends Controller_Standard {
     public function action_logout()
     {
         Auth::instance()->logout(true);
-        try {
-            Controller::redirect('index/index');
+
+        Controller::redirect('index/index');
+    }
+
+    public function action_setUserAsAdmin(string $userId)
+    {
+        $userModel = ORM::factory('user', $userId);
+        if(!$userModel->loaded()) {
+            throw new Exception('userModel');
+            return;
         }
-        catch (Exception $e) {
-            echo $e->getMessage();
-        }
+
+        $userModel->add('roles', ORM::factory('role')->where('name', '=', 'admin')->find());
     }
 }

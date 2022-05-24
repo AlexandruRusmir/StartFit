@@ -656,22 +656,22 @@ class Kohana_ORM extends Model implements serializable {
 		}
 		elseif (isset($this->_has_many[$column]))
 		{
-			$model = ORM::factory($this->_has_many[$column]['model']);
+            $model = ORM::factory($this->_has_many[$column]['model']);
 
-			if (isset($this->_has_many[$column]['through']))
-			{
-				// Grab has_many "through" relationship table
-				$through = $this->_has_many[$column]['through'];
+            if (isset($this->_has_many[$column]['through']))
+            {
+                // Grab has_many "through" relationship table
+                $through = $this->_has_many[$column]['through'];
 
-				// Join on through model's target foreign key (far_key) and target model's primary key
-				$join_col1 = $through.'.'.$this->_has_many[$column]['far_key'];
-				$join_col2 = $model->_object_name.'.'.$model->_primary_key;
+                // Join on through model's target foreign key (far_key) and target model's primary key
+                $join_col1 = $through.'.'.$this->_has_many[$column]['far_key'];
+                $join_col2 = $model->_object_name.'.'.$model->_primary_key;
 
-				$model->join($through)->on($join_col1, '=', $join_col2);
+                $model->join($through)->on($join_col1, '=', $join_col2);
 
-				// Through table's source foreign key (foreign_key) should be this model's primary key
-				$col = $through.'.'.$this->_has_many[$column]['foreign_key'];
-				$val = $this->pk();
+                // Through table's source foreign key (foreign_key) should be this model's primary key
+                $col = $through.'.'.$this->_has_many[$column]['foreign_key'];
+                $val = $this->pk();
 			}
 			else
 			{

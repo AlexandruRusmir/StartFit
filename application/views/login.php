@@ -1,5 +1,5 @@
 <?php
-$message = $message ?? '';
+    $message = $message ?? '';
 ?>
 
 <form class="form-container" method="post" action='<?= URL::site('register/login') ?>'>
@@ -19,6 +19,7 @@ $message = $message ?? '';
     <?= $message; ?>
 
     <div style="display: flex">
-        <p class="login-register-text">Don't have an account? <a href=" <?= URL::site('register/display_register'); ?> ">Register here</a>.</p>
+        <p class="login-register-text">Don't have an account?
+            <a href=" <?= URL::site('register/display_register'); ?> ">Register here</a>.</p>
     </div>
 </form>

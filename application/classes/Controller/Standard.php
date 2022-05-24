@@ -18,6 +18,15 @@ class Controller_Standard extends Controller_Template
     {
         $navItemsConfig = Kohana::$config->load('navItems')->items;
 
+        if (Auth::instance()->logged_in('super_admin')) {
+            $adminNavItemsConfig = Kohana::$config->load('navItems')->adminItems;
+            $superAdminNavItemsConfig = Kohana::$config->load('navItems')->superAdminItems;
+
+            $allNavItems = array_merge($superAdminNavItemsConfig, $adminNavItemsConfig, $navItemsConfig);
+            unset($allNavItems['login']);
+
+            return $allNavItems;
+        }
 
         if (Auth::instance()->logged_in('admin')) {
             $adminNavItemsConfig = Kohana::$config->load('navItems')->adminItems;

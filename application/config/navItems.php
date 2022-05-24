@@ -16,6 +16,20 @@ return [
         ]
     ],
     'adminItems' => [
+        'add_exercise' => [
+            'name' => 'Add exercise',
+            'url' => URL::site('exerciseHandling/displayAddExercise')
+        ],
+        'display_exercises'=> [
+            'name' => 'Display exercises',
+            'url' => URL::site('exerciseHandling/displayExercises')
+        ],
 
+    ],
+    'superAdminItems' => [
+        'users_list' => [
+            'name' => 'Users list',
+            'url' => URL::site('usersHandling/displayUsers')
+        ]
     ]
 ];
