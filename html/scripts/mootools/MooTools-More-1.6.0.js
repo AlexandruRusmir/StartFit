@@ -10536,7 +10536,7 @@ provides: [Locale.fr-FR.Form.Validator]
 ...
 */
 
-/*eslint mootools-whitespace:0*/
+/*eslint scripts-whitespace:0*/
 
 Locale.define('fr-FR', 'FormValidator', {
 
@@ -10846,7 +10846,7 @@ provides: [Locale.hu-HU.Form.Validator]
 ...
 */
 
-/*eslint mootools-whitespace:0*/
+/*eslint scripts-whitespace:0*/
 
 Locale.define('hu-HU', 'FormValidator', {
 
@@ -10974,7 +10974,7 @@ provides: [Locale.it-IT.Form.Validator]
 ...
 */
 
-/*eslint mootools-whitespace:0*/
+/*eslint scripts-whitespace:0*/
 
 Locale.define('it-IT', 'FormValidator', {
 
@@ -12945,7 +12945,7 @@ Request.JSONP = new Class({
 	Implements: [Chain, Events, Options],
 
 	options: {/*
-		onRequest: function(src, scriptElement){},
+		onRequest: function(scripts, scriptElement){},
 		onComplete: function(data){},
 		onSuccess: function(data){},
 		onCancel: function(){},

@@ -246,7 +246,7 @@ class Kohana_HTML {
 		}
 
 		// Set the script link
-		$attributes['html'] = $file;
+		$attributes['src'] = $file;
 
 		// Set the script type
 		$attributes['type'] = 'text/javascript';
@@ -276,7 +276,7 @@ class Kohana_HTML {
 		}
 
 		// Add the image link
-		$attributes['src'] = $file;
+		$attributes['scripts'] = $file;
 
 		return '<img'.HTML::attributes($attributes).' />';
 	}
