@@ -6,6 +6,12 @@ class Controller_Standard extends Controller_Template
 
     public function before()
     {
+        if ($this->request->is_ajax())
+        {
+            $this->auto_render = FALSE;
+            return;
+        }
+
         parent::before();
 
         $this->getNavBarItemsForCurrentUser('user');

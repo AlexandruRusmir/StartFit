@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="started admin and superadmin extra pages">
-      <change afterPath="$PROJECT_DIR$/application/views/userList.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/userListItem.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Controller/Standard.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/Standard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/classes/Controller/SuperAdminStandard.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/SuperAdminStandard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/MooTools-Core-1.6.0.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/scripts/mootools/MooTools-Core-1.6.0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/MooTools-More-1.6.0.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/scripts/mootools/MooTools-More-1.6.0.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Controller/UsersHandling.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/UsersHandling.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/allUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allUsers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/templates/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/default.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/classes/Kohana/HTML.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/classes/Kohana/HTML.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/userList.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/userList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/userListItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/userListItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/styles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,19 +46,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Git.Branch.Popup.ShowAllRepositories": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/kohana",
-    "list.type.of.created.stylesheet": "CSS",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRepositories&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/kohana&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\kohana\html\images" />
@@ -101,7 +98,9 @@
       <workItem from="1653385380140" duration="10272000" />
       <workItem from="1653415018510" duration="71000" />
       <workItem from="1653455321418" duration="4616000" />
-      <workItem from="1653477467477" duration="7513000" />
+      <workItem from="1653477467477" duration="7567000" />
+      <workItem from="1653542750923" duration="21812000" />
+      <workItem from="1653587745172" duration="2461000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652860204924</created>
@@ -138,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653415078608</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="started admin and superadmin extra pages">
+      <created>1653503034863</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653503034863</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

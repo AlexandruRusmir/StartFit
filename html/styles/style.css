@@ -47,10 +47,47 @@ h3 {
     border-radius: 20px;
 }
 
+.user-box {
+    text-align: center;
+    border: ridge;
+    border-radius: 20px;
+    margin: 10px 0;
+    padding-top: 10px;
+}
+
 .custom-active {
     background-color: #ff4c4c;
     color: #ffffff;
     border-radius: 15px;
+}
+
+button.disabled {
+    pointer-events: none;
+    background-color: #dedede;
+}
+
+.remove-admin-button {
+    background-color: #ff4040;
+    color: #F8F8F8;
+    width: 130px;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.remove-admin-button:hover {
+    transform: translateY(-5px);
+}
+
+.add-admin-button {
+    background-color: #29de29;
+    color: #F8F8F8;
+    width: 130px;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.add-admin-button:hover {
+    transform: translateY(-5px);
 }
 
 .table-content {
