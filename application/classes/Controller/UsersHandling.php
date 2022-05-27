@@ -51,7 +51,7 @@ class Controller_UsersHandling extends Controller_SuperAdminStandard
         return $userObject;
     }
 
-    public function action_removeAdminByQueryID()
+    public function action_removeAdminByPostID()
     {
         $userId = $this->request->post('id');
 
@@ -72,7 +72,7 @@ class Controller_UsersHandling extends Controller_SuperAdminStandard
         $this->response->body('Succesful action!');
     }
 
-    public function action_addAdminByQueryID()
+    public function action_addAdminByPostID()
     {
         $userId = $this->request->post('id');
 

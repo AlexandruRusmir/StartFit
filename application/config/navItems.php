@@ -24,6 +24,10 @@ return [
             'name' => 'Display exercises',
             'url' => URL::site('exerciseHandling/displayExercises')
         ],
+        'display_exercise_categories'=> [
+            'name' => 'Exercise categories',
+            'url' => URL::site('exerciseHandling/displayExerciseCategories')
+        ],
 
     ],
     'superAdminItems' => [

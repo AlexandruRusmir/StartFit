@@ -25,7 +25,7 @@ class Controller_Register extends Controller_Standard {
 
 
         $userModel = ORM::factory('User');
-        try{
+        try {
             $userModel->email = $email;
             $userModel->username = $userName;
             $userModel->password = $password;

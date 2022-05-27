@@ -15,12 +15,11 @@
 </div>
 
 <script>
-    //daca am function declarat
     window.addEvent('domready', function() {
 
         const removeAdminRole = (button) => {
             return new Request({
-                url:'<?= URL::site('usersHandling/removeAdminByQueryID')?>',
+                url:'<?= URL::site('usersHandling/removeAdminByPostID')?>',
                 method: 'post',
                 data: {'id': button.dataset.id},
                 onSuccess: (response) => {
@@ -38,7 +37,7 @@
         }
         function addAdminRole(button) {
             return new Request({
-                url: '<?= URL::site('usersHandling/addAdminByQueryID')?>',
+                url: '<?= URL::site('usersHandling/addAdminByPostID')?>',
                 method: 'post',
                 data: {'id': button.dataset.id},
                 onSuccess: (response) => {
@@ -79,9 +78,8 @@
         });
 
         const inputSearch = $$('.input-search');
-        console.log(inputSearch);
         inputSearch.addEvent('keyup', function () {
-                userListRequest.send({
+            userListRequest.send({
                     method: 'get',
                     url: "<?= URL::site('usersHandling/returnUsersList') ?>",
                     data: { 'keyword': this.value },
