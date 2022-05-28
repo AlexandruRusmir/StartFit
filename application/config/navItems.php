@@ -15,7 +15,12 @@ return [
             'url' => URL::site('register/logout')
         ]
     ],
+
     'adminItems' => [
+        'display_exercise_categories'=> [
+            'name' => 'Exercise categories',
+            'url' => URL::site('exerciseHandling/displayExerciseCategories')
+        ],
         'add_exercise' => [
             'name' => 'Add exercise',
             'url' => URL::site('exerciseHandling/displayAddExercise')
@@ -24,12 +29,8 @@ return [
             'name' => 'Display exercises',
             'url' => URL::site('exerciseHandling/displayExercises')
         ],
-        'display_exercise_categories'=> [
-            'name' => 'Exercise categories',
-            'url' => URL::site('exerciseHandling/displayExerciseCategories')
-        ],
-
     ],
+
     'superAdminItems' => [
         'users_list' => [
             'name' => 'Users list',

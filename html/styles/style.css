@@ -26,13 +26,6 @@ h3 {
     margin: 0 auto;
 }
 
-.badge {
-    padding: 0 8px;
-    background: #333333;
-    color: #e7ffef;
-    border-radius: 50px;
-}
-
 .logout {
     background-color: #ff4c4c;
     padding: 0 20px;
@@ -49,8 +42,7 @@ h3 {
 
 .user-box {
     text-align: center;
-    border: ridge;
-    border-radius: 20px;
+    background-color: #F8F8F8;
     margin: 10px 0;
     padding-top: 10px;
 }
@@ -68,6 +60,7 @@ button.disabled {
 
 .remove-admin-button {
     background-color: #ff4040;
+    border: none;
     color: #F8F8F8;
     width: 130px;
     border-radius: 10px;
@@ -80,6 +73,7 @@ button.disabled {
 
 .add-admin-button {
     background-color: #29de29;
+    border: none;
     color: #F8F8F8;
     width: 130px;
     border-radius: 10px;
@@ -132,47 +126,6 @@ footer .a{
     color: #ff4c4c;
 }
 
-.blog-list {
-    margintop: 10%;
-    margin-bottom: 2%;
-    padding: .3rem;
-    background-color: #eee;
-    border-radius: 20px;
-    font: 1rem 'Fira Sans', sans-serif;
-}
-
-.blog-list > h1,
-.blog-details {
-    margin: .5rem;
-    padding: .3rem;
-    font-size: 1.2rem;
-}
-
-.blog-details > h2,
-.blog-details > p {
-    margin: .2rem;
-    font-size: 1rem;
-}
-
-input[type=text], select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical
-}
-
-/* Add a background color and some padding around the form */
-
-.custom-service {
-    background: #b1dfbb;
-    border-radius: 20px;
-    text-align: center;
-}
-
 nav.opeeen + .container{
     padding-top: 100px;
 }
@@ -181,7 +134,7 @@ nav.opeeen + .container{
 
 @media (max-width: 1000px) {
     .container {
-        margin-top: 20%;
+        margin-top: 30%;
     }
 }
 

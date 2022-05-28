@@ -15,7 +15,7 @@
     </div>
 </div>
 
-
+<h5>Current exercise categories:</h5>
 <div id="categories-list">
 
 </div>
@@ -29,24 +29,18 @@
                 method: 'post',
                 data: {'id': button.dataset.id},
                 onSuccess: (response) => {
-                    let parent = button.getParent('.user-box');
-                    let addButton = parent.getElement('.add-admin-button');
-
-                    addButton.removeClass('d-none');
-                    button.addClass('d-none');
                     button.removeClass('disabled');
-
-                    let rolesText = parent.getElement('.roles');
-                    rolesText.innerText = 'Roles: login';
+                    categoryListRequest.send({
+                        method: 'get',
+                        url:'<?= URL::site('exerciseHandling/returnCategoriesList')?>',
+                    });
                 }
             });
         }
 
         const onSuccessCategoryListRequest = (response) => {
-            const removeAdminButtons = $$('#categories-list .remove-admin-button');
-
-
-            removeAdminButtons.addEvent('click', function () {
+            const deleteCategoryButtons = $$('#categories-list .delete-category-button');
+            deleteCategoryButtons.addEvent('click', function () {
                 this.addClass('disabled');
                 deleteCategory(this).send();
             });
@@ -70,6 +64,10 @@
                 onSuccess: (response) => {
                     inputSearch.value = '';
                     button.removeClass('disabled');
+                    categoryListRequest.send({
+                        method: 'get',
+                        url:'<?= URL::site('exerciseHandling/returnCategoriesList')?>',
+                    });
                 }
             });
         }

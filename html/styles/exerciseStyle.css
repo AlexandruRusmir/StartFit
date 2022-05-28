@@ -1,0 +1,20 @@
+.delete-category-button {
+    background-color: #f31c1c;
+    border: none;
+    color: #F8F8F8;
+    width: 130px;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.delete-category-button:hover {
+    background-color: #de1414;
+    transform: translateY(-5px);
+}
+
+.category-box {
+    text-align: center;
+    background-color: #F8F8F8;
+    margin: 10px 120px;
+    padding-top: 10px;
+}

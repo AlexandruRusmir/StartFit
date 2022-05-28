@@ -26,7 +26,8 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
     {
         $categoryId = $this->request->post('id');
 
-        $this->response->body("{$categoryId}");
+        $category = ORM::factory('exercise_category', $categoryId);
+        $category->delete();
     }
 
     public function action_displayExerciseCategories()
