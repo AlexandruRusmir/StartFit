@@ -11,7 +11,7 @@
     </div>
 
     <div style="display: flex">
-        <input type="submit" name='submit' class="submit-btn"/>
+        <button type="submit" class="submit-btn">Add Category</button>
     </div>
 </div>
 

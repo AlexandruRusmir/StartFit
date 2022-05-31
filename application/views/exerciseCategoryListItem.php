@@ -8,7 +8,7 @@ $category = $category ?? null;
         <p>ID: <?= $category->id ?> </p>
     </div>
     <div class="col-5">
-        <p>Category: <?= $category->category ?> </p>
+        <p>Category: <?= $category->name ?> </p>
     </div>
     <div class="col-4">
         <button data-id=<?="{$category->id}" ?> class='delete-category-button'>Delete category</button>

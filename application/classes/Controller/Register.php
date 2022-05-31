@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Register extends Controller_Standard {
+class Controller_Register extends Controller_Standard
+{
 
     public function action_index()
     {
@@ -20,7 +21,7 @@ class Controller_Register extends Controller_Standard {
         $password = $this->request->post('password');
         $confirmPassword = $this->request->post('confirmPassword');
 
-        if(md5($password) != md5($confirmPassword))
+        if (md5($password) != md5($confirmPassword))
             $this->template->main = View::factory('register', ['message' => 'Password is not the same as confirmed password.']);
 
 
@@ -33,9 +34,8 @@ class Controller_Register extends Controller_Standard {
             $userModel->save();
 
             $userModel->add('roles', ORM::factory('role')->where('name', '=', 'login')->find());
-        }
-        catch (Exception $e) {
-            print_r( $e->getMessage());
+        } catch (Exception $e) {
+            print_r($e->getMessage());
             die();
         }
         Auth::instance()->login($userName, $password, true);
@@ -48,10 +48,9 @@ class Controller_Register extends Controller_Standard {
         $password = $this->request->post('password');
 
         $success = '';
-        try{
+        try {
             $success = Auth::instance()->login($userName, $password, true);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             print_r($e->getMessage());
         }
 
@@ -68,7 +67,7 @@ class Controller_Register extends Controller_Standard {
     public function action_setUserAsAdmin(string $userId)
     {
         $userModel = ORM::factory('user', $userId);
-        if(!$userModel->loaded()) {
+        if (!$userModel->loaded()) {
             throw new Exception('userModel');
             return;
         }

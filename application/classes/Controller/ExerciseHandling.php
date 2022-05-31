@@ -26,7 +26,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
     {
         $categoryId = $this->request->post('id');
 
-        $category = ORM::factory('exercise_category', $categoryId);
+        $category = ORM::factory('category', $categoryId);
         $category->delete();
     }
 
@@ -37,26 +37,55 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
 
     public function action_returnCategoriesList()
     {
-        $categories = ORM::factory('exercise_category')->find_all();
+        $categories = ORM::factory('category')->find_all();
 
         $categoryListViews = [];
-        forEach ($categories as $category) {
-                $categoryListViews[] = View::factory('exerciseCategoryListItem', [ 'category' => $category]);
-            }
+        foreach ($categories as $category) {
+            $categoryListViews[] = View::factory('exerciseCategoryListItem', ['category' => $category]);
+        }
 
-        $this->response->body(View::factory('exerciseCategoriesList', [ 'categoryListViews' => $categoryListViews] ));
+        $this->response->body(View::factory('exerciseCategoriesList', ['categoryListViews' => $categoryListViews]));
+    }
+
+    public function action_returnCategoriesJsonByKeyword()
+    {
+        $keyword = $this->request->query('keyword');
+
+        if(!$keyword) {
+            $this->response->body('[]');
+            return;
+        }
+
+        $categories = ORM::factory('category');
+        if ($keyword) {
+            $categories = $categories->where('name', 'LIKE', "%{$keyword}%");
+        }
+
+        $categoriesResponse = [];
+        $categories = $categories->find_all();
+
+        $categoriesResponse = [];
+        foreach ($categories as $category) {
+            $categoriesResponse[] = (object)['id' => $category->id, 'name' => $category->name];
+        }
+
+        $categoriesJson = json_encode($categoriesResponse);
+
+        $this->response->body($categoriesJson);
     }
 
     public function action_addCategory()
     {
         $category = $this->request->post('category');
-        $categoryModel = ORM::factory('exercise_Category');
-        $categoryModel->category = $category;
 
-        if(ORM::factory('exercise_category')->where('category', '=', $category)->loaded()) {
+        $existentCategories = ORM::factory('category')->where('name', '=', $category);
+        if ($existentCategories->loaded()) {
             $this->response->body('Category name already in use!');
             return;
         }
+
+        $categoryModel = ORM::factory('category');
+        $categoryModel->name = $category;
 
         $categoryModel->save();
     }

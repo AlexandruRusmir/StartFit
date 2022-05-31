@@ -27,4 +27,5 @@
         </div>
     </footer>
 </body>
+    <?= HTML::script('html/scripts/helpers.js')?>
 </html>

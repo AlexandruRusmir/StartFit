@@ -6,8 +6,7 @@ class Controller_Standard extends Controller_Template
 
     public function before()
     {
-        if ($this->request->is_ajax())
-        {
+        if ($this->request->is_ajax()) {
             $this->auto_render = FALSE;
             return;
         }

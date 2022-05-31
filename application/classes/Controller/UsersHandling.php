@@ -18,18 +18,18 @@ class Controller_UsersHandling extends Controller_SuperAdminStandard
         $users = $users->find_all();
 
         $userListViews = [];
-        forEach ($users as $user) {
+        foreach ($users as $user) {
             if ($user->username !== 'superadmin') {
-                $userListViews[] = View::factory('userListItem', [ 'user' => $this->getCustomUserObject($user)]);
+                $userListViews[] = View::factory('userListItem', ['user' => $this->getCustomUserObject($user)]);
             }
         }
 
-        $this->response->body(View::factory('userList', [ 'userListViews' => $userListViews] ));
+        $this->response->body(View::factory('userList', ['userListViews' => $userListViews]));
     }
 
     private function getCustomUserObject(Model_User $user): object
     {
-        $userObject = (object) [];
+        $userObject = (object)[];
         $userObject->id = $user->id;
         $userObject->username = $user->username;
         $userObject->email = $user->email;
@@ -38,10 +38,10 @@ class Controller_UsersHandling extends Controller_SuperAdminStandard
         $rolesString = '';
 
         $rolesCount = count($roles);
-        foreach($roles as $key => $role) {
-            $rolesString .=  $role->name;
+        foreach ($roles as $key => $role) {
+            $rolesString .= $role->name;
 
-            if($key < $rolesCount - 1) {
+            if ($key < $rolesCount - 1) {
                 $rolesString .= ', ';
             }
         }
@@ -62,7 +62,7 @@ class Controller_UsersHandling extends Controller_SuperAdminStandard
             return;
         }
 
-        if (!$userModel->has('roles', ORM::factory('Role', [ 'name' => 'admin' ]))) {
+        if (!$userModel->has('roles', ORM::factory('Role', ['name' => 'admin']))) {
             $this->response->body('User does not have admin role');
             return;
         }
@@ -82,7 +82,7 @@ class Controller_UsersHandling extends Controller_SuperAdminStandard
             return;
         }
 
-        if ($userModel->has('roles', ORM::factory('Role', [ 'name' => 'admin' ]))) {
+        if ($userModel->has('roles', ORM::factory('Role', ['name' => 'admin']))) {
             $this->response->body('User already has admin role');
             return;
         }

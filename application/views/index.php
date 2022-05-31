@@ -1,5 +1,5 @@
 <?php
-URL::site('superadminstandard/returnUsersList');
+URL::site('exerciseHandling/return');
 ?>
 
 <div class="container">
