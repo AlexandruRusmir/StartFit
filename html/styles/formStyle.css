@@ -25,7 +25,7 @@
     transition: .3s;
 }
 
-.input-group input:focus, .input-group input:valid {
+.input-group input:focus {
     border-color: #ff4c4c;
 }
 
@@ -41,12 +41,13 @@
     color: #FFF;
     cursor: pointer;
     border: none;
-    transition: .3s;
+    transition: ease-in-out .3s;
 }
 
 .submit-btn:hover {
     transform: translateY(-5px);
     background: #fc2323;
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
 .login-register-text {

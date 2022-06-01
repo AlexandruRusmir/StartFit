@@ -10,8 +10,8 @@
         <input id='input-search' type="text" placeholder="Add an exercise category" name="username" required>
     </div>
 
-    <div style="display: flex">
-        <button type="submit" class="submit-btn">Add Category</button>
+    <div class="d-flex">
+        <button type="submit" id='category-add-button' class="add-button">Add Category</button>
     </div>
 </div>
 
@@ -21,18 +21,18 @@
 </div>
 
 <script>
-    window.addEvent('domready', function() {
+    window.addEvent('domready', function () {
 
         const deleteCategory = (button) => {
             return new Request({
-                url:'<?= URL::site('exerciseHandling/deleteCategoryByPostID')?>',
+                url: '<?= URL::site('exerciseHandling/deleteCategoryByPostID')?>',
                 method: 'post',
                 data: {'id': button.dataset.id},
                 onSuccess: (response) => {
                     button.removeClass('disabled');
                     categoryListRequest.send({
                         method: 'get',
-                        url:'<?= URL::site('exerciseHandling/returnCategoriesList')?>',
+                        url: '<?= URL::site('exerciseHandling/returnCategoriesList')?>',
                     });
                 }
             });
@@ -52,13 +52,13 @@
             onSuccess: onSuccessCategoryListRequest,
         });
 
-        const categoryAddButton = $$('.submit-btn');
+        const categoryAddButton = $('category-add-button');
 
         const inputSearch = document.getElementById('input-search');
 
         const addCategoryItem = (button) => {
             return new Request({
-                url:'<?= URL::site('exerciseHandling/addCategory')?>',
+                url: '<?= URL::site('exerciseHandling/addCategory')?>',
                 method: 'post',
                 data: {'category': inputSearch.value},
                 onSuccess: (response) => {
@@ -66,7 +66,7 @@
                     button.removeClass('disabled');
                     categoryListRequest.send({
                         method: 'get',
-                        url:'<?= URL::site('exerciseHandling/returnCategoriesList')?>',
+                        url: '<?= URL::site('exerciseHandling/returnCategoriesList')?>',
                     });
                 }
             });
@@ -79,7 +79,7 @@
 
         categoryListRequest.send({
             method: 'get',
-            url:'<?= URL::site('exerciseHandling/returnCategoriesList')?>',
+            url: '<?= URL::site('exerciseHandling/returnCategoriesList')?>',
         });
     });
 </script>

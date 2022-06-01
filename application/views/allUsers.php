@@ -37,20 +37,20 @@
             })
         },
         addAdminRole: function (button) {
-        return new Request({
-            url: '<?= URL::site('usersHandling/addAdminByPostID')?>',
-            method: 'post',
-            data: {'id': button.dataset.id},
-            onSuccess: (response) => {
-                let parent = button.getParent('.user-box');
-                let removeButton = parent.getElement('.remove-admin-button');
+            return new Request({
+                url: '<?= URL::site('usersHandling/addAdminByPostID')?>',
+                method: 'post',
+                data: {'id': button.dataset.id},
+                onSuccess: (response) => {
+                    let parent = button.getParent('.user-box');
+                    let removeButton = parent.getElement('.remove-admin-button');
 
-                removeButton.removeClass('d-none');
-                button.addClass('d-none');
-                button.removeClass('disabled');
+                    removeButton.removeClass('d-none');
+                    button.addClass('d-none');
+                    button.removeClass('disabled');
 
-                let rolesText = parent.getElement('.roles');
-                rolesText.innerText = 'Roles: login, admin';
+                    let rolesText = parent.getElement('.roles');
+                    rolesText.innerText = 'Roles: login, admin';
                 }
             });
         },
@@ -59,8 +59,6 @@
             const removeAdminButtons = $$('#users-list .remove-admin-button');
             const addAdminButtons = $$('#users-list .add-admin-button');
 
-            let inputValue = '';
-            //onkeypress pe input:
 
             removeAdminButtons.addEvent('click', function () {
                 this.addClass('disabled');
@@ -82,24 +80,24 @@
         }),
 
         init: function () {
-            this.inputSearch.addEvent('keyup', () =>{
+            this.inputSearch.addEvent('keyup', () => {
                 this.userListRequest.send({
                     method: 'get',
                     url: "<?= URL::site('usersHandling/returnUsersList') ?>",
-                    data: { 'keyword': this.value },
+                    data: {'keyword': this.inputSearch.value},
                 });
             });
 
             this.userListRequest.send({
                 method: 'get',
-                url:'<?= URL::site('usersHandling/returnUsersList')?>',
+                url: '<?= URL::site('usersHandling/returnUsersList')?>',
             });
         }
 
     };
 
 
-    window.addEvent('domready', function() {
+    window.addEvent('domready', function () {
         usersViewHandler.init();
         //const removeAdminRole = (button) => {
         //

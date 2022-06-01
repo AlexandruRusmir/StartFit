@@ -78,15 +78,19 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
     {
         $category = $this->request->post('category');
 
+        $alreadyExistentName = false;
         $existentCategories = ORM::factory('category')->where('name', '=', $category);
         if ($existentCategories->loaded()) {
+            $alreadyExistentName = true;
             $this->response->body('Category name already in use!');
             return;
         }
 
-        $categoryModel = ORM::factory('category');
-        $categoryModel->name = $category;
+        if (! $alreadyExistentName) {
+            $categoryModel = ORM::factory('category');
+            $categoryModel->name = $category;
 
-        $categoryModel->save();
+            $categoryModel->save();
+        }
     }
 }
