@@ -7,13 +7,33 @@ class Model_User extends Model_Auth_User
         $this->email = $email;
     }
 
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
     public function setUsername(string $username): void
     {
         $this->username = $username;
     }
 
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
     public function setPassword(string $password): void
     {
-        $this->password = md5($password);
+        $this->password = $password;
+    }
+
+    public function getLogins(): int
+    {
+        return $this->logins;
+    }
+
+    public function getLastLogin(): int
+    {
+        return $this->last_login;
     }
 }

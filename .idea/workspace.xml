@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added category search in add exercise page">
+    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added much to add category page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Controller/AdminStandard.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/AdminStandard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/classes/Controller/ExerciseHandling.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/ExerciseHandling.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Controller/Register.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/Register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Controller/SuperAdminStandard.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/SuperAdminStandard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Model/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Model/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Model/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Model/Exercise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Model/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Model/Role.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Model/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/navItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/navItems.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/addExercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/addExercise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/allExerciseCategories.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allExerciseCategories.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/allUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allUsers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/allExercises.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allExercises.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/styles/exerciseStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/styles/exerciseStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/styles/formStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/styles/formStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/styles/style.css" afterDir="false" />
@@ -55,7 +60,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/wamp64/www/kohana",
+    "last_opened_file_path": "C:/xampp/htdocs/MentorshipExerciseees",
     "list.type.of.created.stylesheet": "CSS",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
@@ -68,11 +73,11 @@
       <recent name="C:\xampp\htdocs\kohana\application\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\wamp64\www\kohana\application\classes\Controller" />
+      <recent name="D:\wamp64\www\kohana\application\classes\Controller\Admin" />
       <recent name="C:\xampp\htdocs\kohana\application\classes\Model" />
       <recent name="C:\xampp\htdocs\kohana\application\classes\Model\exercise" />
       <recent name="C:\xampp\htdocs\kohana\html\scripts\mootools" />
-      <recent name="C:\xampp\htdocs\kohana\html" />
-      <recent name="C:\xampp\htdocs\kohana\application\src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -111,7 +116,9 @@
       <workItem from="1653912814376" duration="5250000" />
       <workItem from="1653995379329" duration="12515000" />
       <workItem from="1654066489849" duration="187000" />
-      <workItem from="1654068380618" duration="13729000" />
+      <workItem from="1654068380618" duration="14664000" />
+      <workItem from="1654144990036" duration="1131000" />
+      <workItem from="1654154993526" duration="23526000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652860204924</created>
@@ -183,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654019810124</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added much to add category page">
+      <created>1654105777683</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1654105777683</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +234,7 @@
     <MESSAGE value="added category page 1.0" />
     <MESSAGE value="added category page 2.0" />
     <MESSAGE value="added category search in add exercise page" />
-    <option name="LAST_COMMIT_MESSAGE" value="added category search in add exercise page" />
+    <MESSAGE value="added much to add category page" />
+    <option name="LAST_COMMIT_MESSAGE" value="added much to add category page" />
   </component>
 </project>

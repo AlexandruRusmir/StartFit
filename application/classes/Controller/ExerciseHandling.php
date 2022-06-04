@@ -12,16 +12,6 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $this->template->main = View::factory('addExercise');
     }
 
-    public function action_addExercise()
-    {
-
-    }
-
-    public function action_getExercises()
-    {
-
-    }
-
     public function action_deleteCategoryByPostID()
     {
         $categoryId = $this->request->post('id');
@@ -51,7 +41,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
     {
         $keyword = $this->request->query('keyword');
 
-        if(!$keyword) {
+        if (!$keyword) {
             $this->response->body('[]');
             return;
         }
@@ -79,18 +69,37 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $category = $this->request->post('category');
 
         $alreadyExistentName = false;
-        $existentCategories = ORM::factory('category')->where('name', '=', $category);
+        $existentCategories = (new Model_Category())->where('name', '=', $category)->find();
         if ($existentCategories->loaded()) {
-            $alreadyExistentName = true;
             $this->response->body('Category name already in use!');
             return;
         }
 
-        if (! $alreadyExistentName) {
-            $categoryModel = ORM::factory('category');
-            $categoryModel->name = $category;
+        $categoryModel = new Model_Category();
+        $categoryModel->setName($category);
 
-            $categoryModel->save();
+        $categoryModel->save();
+
+    }
+
+    public function action_addExercise()
+    {
+        $exercise = json_decode($this->request->post('exercise'));
+
+        $exerciseModel = ORM::factory('exercise');
+        $exerciseModel->setName($exercise->name);
+        $exerciseModel->setGifURL($exercise->gifUrl);
+        $exerciseModel->setDefaultDuration($exercise->duration);
+        $exerciseModel->setDefaultBreakTime($exercise->breakTime);
+        $exerciseModel->save();
+
+        foreach ($exercise->categories as $category) {
+            $exerciseModel->add('categories', ORM::factory('category', $category->id));
         }
+    }
+
+    public function action_getExercisesJson()
+    {
+
     }
 }

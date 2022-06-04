@@ -25,11 +25,11 @@ class Controller_Register extends Controller_Standard
             $this->template->main = View::factory('register', ['message' => 'Password is not the same as confirmed password.']);
 
 
-        $userModel = ORM::factory('User');
+        $userModel = new Model_User();
         try {
-            $userModel->email = $email;
-            $userModel->username = $userName;
-            $userModel->password = $password;
+            $userModel->setUsername($userName);
+            $userModel->setEmail($email);
+            $userModel->setPassword($password);
 
             $userModel->save();
 

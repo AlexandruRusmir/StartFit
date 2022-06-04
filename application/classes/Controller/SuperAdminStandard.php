@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_SuperAdminStandard extends Controller_Standard
+class Controller_SuperAdminStandard extends Controller_AdminStandard
 {
     public function before()
     {

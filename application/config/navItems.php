@@ -21,10 +21,6 @@ return [
             'name' => 'Exercise categories',
             'url' => URL::site('exerciseHandling/displayExerciseCategories')
         ],
-        'add_exercise' => [
-            'name' => 'Add exercise',
-            'url' => URL::site('exerciseHandling/displayAddExercise')
-        ],
         'display_exercises'=> [
             'name' => 'Display exercises',
             'url' => URL::site('exerciseHandling/displayExercises')

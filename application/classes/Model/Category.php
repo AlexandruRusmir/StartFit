@@ -1,6 +1,21 @@
-<?php defined('SYSPATH') OR die('No direct access allowed.');
+<?php defined('SYSPATH') or die('No direct access allowed.');
 
 class Model_Category extends ORM
 {
+    protected $_has_many = [
+        'exercises' => [
+            'model' => 'exercise',
+            'through' => 'categories_exercises'
+        ]
+    ];
 
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }
