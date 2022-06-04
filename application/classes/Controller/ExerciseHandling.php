@@ -97,7 +97,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         }
     }
 
-    public function action_get_exercises_json(): string
+    public function action_get_exercises_json()
     {
         $allExercises = (new Model_Exercise())->find_all();
 
@@ -108,7 +108,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
 
         $exercisesJson = json_encode($exercisesArray);
 
-        return $exercisesJson;
+        $this->response->body($exercisesJson);
     }
 
     private function getCustomExerciseObject($exercise): object
@@ -123,7 +123,10 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $categories = $exercise->categories->find_all();
         $categoriesArray = [];
         foreach ($categories as $category) {
-            $categoriesArray[] = $category;
+            $categoryObject = (object)[];
+            $categoryObject->name = $category->getName();
+            $categoryObject->id = $category->getID();
+            $categoriesArray[] = $categoryObject;
         }
 
         $exerciseObject->categories = $categoriesArray;

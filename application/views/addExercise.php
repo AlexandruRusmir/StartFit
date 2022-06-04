@@ -139,7 +139,7 @@
             this.updateSelectedCategoriesDiv();
         },
 
-        onSuccessExerciseListRequest: function (responseJSON, responseText) {
+        onSuccessCategoriesListRequest: function (responseJSON, responseText) {
             this.allReceivedCategories = responseJSON;
 
             this.matchingCategoriesDiv.innerHTML = '';
@@ -154,9 +154,9 @@
             });
         },
 
-        categoryListRequest: new Request.JSON({
+        categoriesListRequest: new Request.JSON({
             onSuccess: function (responseJSON, responseText) {
-                exercisesViewHandler.onSuccessExerciseListRequest(responseJSON, responseText);
+                exercisesViewHandler.onSuccessCategoriesListRequest(responseJSON, responseText);
             },
         }),
 
@@ -199,7 +199,7 @@
 
         init: function () {
             this.inputSearch.addEvent('keyup', () => {
-                this.categoryListRequest.send({
+                this.categoriesListRequest.send({
                     method: 'get',
                     url: "<?= URL::site('exerciseHandling/return_categories_json_by_keyword') ?>",
                     data: {'keyword': this.inputSearch.value},

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="used snake case for controller actions">
+    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added some controller modifications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/classes/Controller/ExerciseHandling.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/ExerciseHandling.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/classes/Model/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Model/Exercise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Model/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Model/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/addExercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/addExercise.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/allExercises.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allExercises.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +109,8 @@
       <workItem from="1654068380618" duration="14664000" />
       <workItem from="1654144990036" duration="1131000" />
       <workItem from="1654154993526" duration="23526000" />
-      <workItem from="1654322855264" duration="3664000" />
+      <workItem from="1654322855264" duration="3702000" />
+      <workItem from="1654366896426" duration="1422000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652860204924</created>
@@ -201,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654323742465</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added some controller modifications">
+      <created>1654360856810</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1654360856810</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +249,7 @@
     <MESSAGE value="added category search in add exercise page" />
     <MESSAGE value="added much to add category page" />
     <MESSAGE value="used snake case for controller actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="used snake case for controller actions" />
+    <MESSAGE value="added some controller modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some controller modifications" />
   </component>
 </project>
