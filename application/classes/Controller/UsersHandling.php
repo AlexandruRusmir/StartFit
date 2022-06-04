@@ -2,12 +2,12 @@
 
 class Controller_UsersHandling extends Controller_SuperAdminStandard
 {
-    public function action_displayUsers()
+    public function action_display_users()
     {
         $this->template->main = View::factory('allUsers');
     }
 
-    public function action_returnUsersList()
+    public function action_return_users_list()
     {
         $keyword = $this->request->query('keyword');
 
@@ -25,6 +25,47 @@ class Controller_UsersHandling extends Controller_SuperAdminStandard
         }
 
         $this->response->body(View::factory('userList', ['userListViews' => $userListViews]));
+    }
+
+    public function action_remove_admin_by_post_ID()
+    {
+        $userId = $this->request->post('id');
+
+        $userModel = ORM::factory('User', $userId);
+
+        if (!$userModel->loaded()) {
+            $this->response->body('Please provide a valid user id');
+            return;
+        }
+
+        if (!$userModel->has('roles', ORM::factory('Role', ['name' => 'admin']))) {
+            $this->response->body('User does not have admin role');
+            return;
+        }
+
+        $userModel->remove('roles', ORM::factory('role')->where('name', '=', 'admin')->find());
+
+        $this->response->body('Succesful action!');
+    }
+
+    public function action_add_admin_by_post_ID()
+    {
+        $userId = $this->request->post('id');
+
+        $userModel = ORM::factory('User', $userId);
+        if (!$userModel->loaded()) {
+            $this->response->body('Please provide a valid user id');
+            return;
+        }
+
+        if ($userModel->has('roles', ORM::factory('Role', ['name' => 'admin']))) {
+            $this->response->body('User already has admin role');
+            return;
+        }
+
+        $userModel->add('roles', ORM::factory('role')->where('name', '=', 'admin')->find());
+
+        $this->response->body('Succesful action!');
     }
 
     private function getCustomUserObject(Model_User $user): object
@@ -49,46 +90,5 @@ class Controller_UsersHandling extends Controller_SuperAdminStandard
         $userObject->roles = $rolesString;
 
         return $userObject;
-    }
-
-    public function action_removeAdminByPostID()
-    {
-        $userId = $this->request->post('id');
-
-        $userModel = ORM::factory('User', $userId);
-
-        if (!$userModel->loaded()) {
-            $this->response->body('Please provide a valid user id');
-            return;
-        }
-
-        if (!$userModel->has('roles', ORM::factory('Role', ['name' => 'admin']))) {
-            $this->response->body('User does not have admin role');
-            return;
-        }
-
-        $userModel->remove('roles', ORM::factory('role')->where('name', '=', 'admin')->find());
-
-        $this->response->body('Succesful action!');
-    }
-
-    public function action_addAdminByPostID()
-    {
-        $userId = $this->request->post('id');
-
-        $userModel = ORM::factory('User', $userId);
-        if (!$userModel->loaded()) {
-            $this->response->body('Please provide a valid user id');
-            return;
-        }
-
-        if ($userModel->has('roles', ORM::factory('Role', ['name' => 'admin']))) {
-            $this->response->body('User already has admin role');
-            return;
-        }
-
-        $userModel->add('roles', ORM::factory('role')->where('name', '=', 'admin')->find());
-
-        $this->response->body('Succesful action!');
     }
 }

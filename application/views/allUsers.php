@@ -20,7 +20,7 @@
         selectedCategories: [],
         removeAdminRole: function (button) {
             return new Request({
-                url: '<?= URL::site('usersHandling/removeAdminByPostID')?>',
+                url: '<?= URL::site('usersHandling/remove_admin_by_post_ID')?>',
                 method: 'post',
                 data: {'id': button.dataset.id},
                 onSuccess: (response) => {
@@ -38,7 +38,7 @@
         },
         addAdminRole: function (button) {
             return new Request({
-                url: '<?= URL::site('usersHandling/addAdminByPostID')?>',
+                url: '<?= URL::site('usersHandling/add_admin_by_post_ID')?>',
                 method: 'post',
                 data: {'id': button.dataset.id},
                 onSuccess: (response) => {
@@ -83,14 +83,14 @@
             this.inputSearch.addEvent('keyup', () => {
                 this.userListRequest.send({
                     method: 'get',
-                    url: "<?= URL::site('usersHandling/returnUsersList') ?>",
+                    url: "<?= URL::site('usersHandling/return_users_list') ?>",
                     data: {'keyword': this.inputSearch.value},
                 });
             });
 
             this.userListRequest.send({
                 method: 'get',
-                url: '<?= URL::site('usersHandling/returnUsersList')?>',
+                url: '<?= URL::site('usersHandling/return_users_List')?>',
             });
         }
 

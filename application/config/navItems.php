@@ -19,18 +19,18 @@ return [
     'adminItems' => [
         'display_exercise_categories'=> [
             'name' => 'Exercise categories',
-            'url' => URL::site('exerciseHandling/displayExerciseCategories')
+            'url' => URL::site('exerciseHandling/display_exercise_categories')
         ],
         'display_exercises'=> [
             'name' => 'Display exercises',
-            'url' => URL::site('exerciseHandling/displayExercises')
+            'url' => URL::site('exerciseHandling/display_exercises')
         ],
     ],
 
     'superAdminItems' => [
         'users_list' => [
             'name' => 'Users list',
-            'url' => URL::site('usersHandling/displayUsers')
+            'url' => URL::site('usersHandling/display_users')
         ]
     ]
 ];

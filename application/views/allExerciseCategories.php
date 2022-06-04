@@ -32,7 +32,7 @@
                     button.removeClass('disabled');
                     categoryListRequest.send({
                         method: 'get',
-                        url: '<?= URL::site('exerciseHandling/returnCategoriesList')?>',
+                        url: '<?= URL::site('exerciseHandling/return_categories_list')?>',
                     });
                 }
             });
@@ -58,7 +58,7 @@
 
         const addCategoryItem = (button) => {
             return new Request({
-                url: '<?= URL::site('exerciseHandling/addCategory')?>',
+                url: '<?= URL::site('exerciseHandling/add_category')?>',
                 method: 'post',
                 data: {'category': inputSearch.value},
                 onSuccess: (response) => {
@@ -66,7 +66,7 @@
                     button.removeClass('disabled');
                     categoryListRequest.send({
                         method: 'get',
-                        url: '<?= URL::site('exerciseHandling/returnCategoriesList')?>',
+                        url: '<?= URL::site('exerciseHandling/return_categories_list')?>',
                     });
                 }
             });
@@ -79,7 +79,7 @@
 
         categoryListRequest.send({
             method: 'get',
-            url: '<?= URL::site('exerciseHandling/returnCategoriesList')?>',
+            url: '<?= URL::site('exerciseHandling/return_categories_list')?>',
         });
     });
 </script>

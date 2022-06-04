@@ -2,7 +2,7 @@
 
 class Controller_ExerciseHandling extends Controller_AdminStandard
 {
-    public function action_displayExercises()
+    public function action_display_exercises()
     {
         $this->template->main = View::factory('allExercises');
     }
@@ -20,12 +20,12 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $category->delete();
     }
 
-    public function action_displayExerciseCategories()
+    public function action_display_exercise_categories()
     {
         $this->template->main = View::factory('allExerciseCategories');
     }
 
-    public function action_returnCategoriesList()
+    public function action_return_categories_list()
     {
         $categories = ORM::factory('category')->find_all();
 
@@ -37,7 +37,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $this->response->body(View::factory('exerciseCategoriesList', ['categoryListViews' => $categoryListViews]));
     }
 
-    public function action_returnCategoriesJsonByKeyword()
+    public function action_return_categories_json_by_keyword()
     {
         $keyword = $this->request->query('keyword');
 
@@ -64,7 +64,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $this->response->body($categoriesJson);
     }
 
-    public function action_addCategory()
+    public function action_add_category()
     {
         $category = $this->request->post('category');
 
@@ -82,7 +82,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
 
     }
 
-    public function action_addExercise()
+    public function action_add_exercise()
     {
         $exercise = json_decode($this->request->post('exercise'));
 
@@ -98,7 +98,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         }
     }
 
-    public function action_getExercisesJson()
+    public function action_get_exercises_json()
     {
 
     }

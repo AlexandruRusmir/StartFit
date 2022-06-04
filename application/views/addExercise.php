@@ -161,7 +161,7 @@
         }),
 
         exercisePostRequest: new Request({
-            url: '<?= URL::site('exerciseHandling/addExercise')?>',
+            url: '<?= URL::site('exerciseHandling/add_exercise')?>',
             method: 'post',
             onSuccess: (response) => {
                 exercisesViewHandler.exerciseNameInput.value = '';
@@ -201,7 +201,7 @@
             this.inputSearch.addEvent('keyup', () => {
                 this.categoryListRequest.send({
                     method: 'get',
-                    url: "<?= URL::site('exerciseHandling/returnCategoriesJsonByKeyword') ?>",
+                    url: "<?= URL::site('exerciseHandling/return_categories_json_by_keyword') ?>",
                     data: {'keyword': this.inputSearch.value},
                 });
             });

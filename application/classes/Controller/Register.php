@@ -64,7 +64,7 @@ class Controller_Register extends Controller_Standard
         Controller::redirect('index/index');
     }
 
-    public function action_setUserAsAdmin(string $userId)
+    public function action_set_user_as_admin(string $userId)
     {
         $userModel = ORM::factory('user', $userId);
         if (!$userModel->loaded()) {
