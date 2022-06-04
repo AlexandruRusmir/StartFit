@@ -9,6 +9,11 @@ class Model_Exercise extends ORM
         ]
     ];
 
+    public function getID(): int
+    {
+        return $this->id;
+    }
+
     public function setName(string $name): void
     {
         $this->name = $name;

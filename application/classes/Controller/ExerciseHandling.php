@@ -7,7 +7,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $this->template->main = View::factory('allExercises');
     }
 
-    public function action_displayAddExercise()
+    public function action_display_add_exercise()
     {
         $this->template->main = View::factory('addExercise');
     }
@@ -51,7 +51,6 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
             $categories = $categories->where('name', 'LIKE', "%{$keyword}%");
         }
 
-        $categoriesResponse = [];
         $categories = $categories->find_all();
 
         $categoriesResponse = [];
@@ -98,8 +97,37 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         }
     }
 
-    public function action_get_exercises_json()
+    public function action_get_exercises_json(): string
     {
+        $allExercises = (new Model_Exercise())->find_all();
 
+        $exercisesArray = [];
+        foreach ($allExercises as $exercise) {
+            $exercisesArray[] = $this->getCustomExerciseObject($exercise);
+        }
+
+        $exercisesJson = json_encode($exercisesArray);
+
+        return $exercisesJson;
+    }
+
+    private function getCustomExerciseObject($exercise): object
+    {
+        $exerciseObject = (object)[];
+        $exerciseObject->id = $exercise->getID();
+        $exerciseObject->name = $exercise->getName();
+        $exerciseObject->gifURL = $exercise->getGifURL();
+        $exerciseObject->defaultDuration = $exercise->getDefaultDuration();
+        $exerciseObject->defaultBreakTime = $exercise->getDefaultBreakTime();
+
+        $categories = $exercise->categories->find_all();
+        $categoriesArray = [];
+        foreach ($categories as $category) {
+            $categoriesArray[] = $category;
+        }
+
+        $exerciseObject->categories = $categoriesArray;
+
+        return $exerciseObject;
     }
 }

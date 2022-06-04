@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added much to add category page">
+    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="used snake case for controller actions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/classes/Controller/ExerciseHandling.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/ExerciseHandling.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/classes/Controller/Register.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/Register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/classes/Controller/UsersHandling.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/UsersHandling.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/navItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/navItems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/addExercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/addExercise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/allExerciseCategories.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allExerciseCategories.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/allUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allUsers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Model/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Model/Exercise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/allExercises.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allExercises.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +108,7 @@
       <workItem from="1654068380618" duration="14664000" />
       <workItem from="1654144990036" duration="1131000" />
       <workItem from="1654154993526" duration="23526000" />
-      <workItem from="1654322855264" duration="833000" />
+      <workItem from="1654322855264" duration="3664000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652860204924</created>
@@ -198,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654322915114</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="used snake case for controller actions">
+      <created>1654323742465</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1654323742465</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +239,7 @@
     <MESSAGE value="added category page 2.0" />
     <MESSAGE value="added category search in add exercise page" />
     <MESSAGE value="added much to add category page" />
-    <option name="LAST_COMMIT_MESSAGE" value="added much to add category page" />
+    <MESSAGE value="used snake case for controller actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="used snake case for controller actions" />
   </component>
 </project>
