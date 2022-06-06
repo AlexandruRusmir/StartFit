@@ -25,7 +25,7 @@
 
         const deleteCategory = (button) => {
             return new Request({
-                url: '<?= URL::site('exerciseHandling/deleteCategoryByPostID')?>',
+                url: '<?= URL::site('exerciseHandling/delete_category_by_post_ID')?>',
                 method: 'post',
                 data: {'id': button.dataset.id},
                 onSuccess: (response) => {
@@ -39,7 +39,7 @@
         }
 
         const onSuccessCategoryListRequest = (response) => {
-            const deleteCategoryButtons = $$('#categories-list .delete-category-button');
+            const deleteCategoryButtons = $$('#categories-list .delete-button');
             deleteCategoryButtons.addEvent('click', function () {
                 this.addClass('disabled');
                 deleteCategory(this).send();

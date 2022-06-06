@@ -12,7 +12,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $this->template->main = View::factory('addExercise');
     }
 
-    public function action_deleteCategoryByPostID()
+    public function action_delete_category_by_post_ID()
     {
         $categoryId = $this->request->post('id');
 
@@ -86,20 +86,24 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $exercise = json_decode($this->request->post('exercise'));
 
         $exerciseModel = ORM::factory('exercise');
-        $exerciseModel->setName($exercise->name);
-        $exerciseModel->setGifURL($exercise->gifUrl);
-        $exerciseModel->setDefaultDuration($exercise->duration);
-        $exerciseModel->setDefaultBreakTime($exercise->breakTime);
-        $exerciseModel->save();
 
-        foreach ($exercise->categories as $category) {
-            $exerciseModel->add('categories', ORM::factory('category', $category->id));
-        }
+        $this->saveExercise($exerciseModel, $exercise);
+
+        $this->response->body();
     }
 
-    public function action_get_exercises_json()
+    public function action_delete_exercise_by_post_id()
     {
-        $allExercises = (new Model_Exercise())->find_all();
+        $exerciseId = $this->request->post('id');
+
+        $exercise = ORM::factory('exercise', $exerciseId);
+        $exercise->delete();
+    }
+
+    public function action_get_exercises_json_by_keyword()
+    {
+        $keyword = $this->request->query('keyword');
+        $allExercises = (new Model_Exercise())->where('name', 'LIKE', "%{$keyword}%")->find_all();
 
         $exercisesArray = [];
         foreach ($allExercises as $exercise) {
@@ -132,5 +136,19 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $exerciseObject->categories = $categoriesArray;
 
         return $exerciseObject;
+    }
+
+    private function saveExercise(Model_Exercise $exerciseModel, $exercise)
+    {
+
+        $exerciseModel->setName($exercise->name);
+        $exerciseModel->setGifURL($exercise->gifUrl);
+        $exerciseModel->setDefaultDuration($exercise->duration);
+        $exerciseModel->setDefaultBreakTime($exercise->breakTime);
+        $exerciseModel->save();
+
+        foreach ($exercise->categories as $category) {
+            $exerciseModel->add('categories', ORM::factory('category', $category->id));
+        }
     }
 }

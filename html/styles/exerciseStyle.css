@@ -1,15 +1,29 @@
-.delete-category-button {
+.delete-button {
     background-color: #f31c1c;
     border: none;
     color: #F8F8F8;
     width: 130px;
-    border-radius: 10px;
+    border-radius: 5px;
     transition: ease-in-out .3s;
 }
 
-.delete-category-button:hover {
+.delete-button:hover {
     background-color: #de1414;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+}
+
+.modify-button {
+    background-color: #7cc1f0;
+    border: none;
+    color: #F8F8F8;
+    width: 130px;
+    border-radius: 5px;
+    transition: ease-in-out .3s;
+}
+
+.modify-button:hover {
+    background-color: #569dcc;
+    transform: translateY(-3px);
 }
 
 .add-button {
@@ -56,6 +70,12 @@
     background-color: #de1414;
 }
 
+.exercise-box {
+    padding: 1rem;
+    background-color: #F8F8F8;
+    text-align: center;
+}
+
 .error-message {
     color: #f60606;
     text-align: center;
@@ -92,4 +112,14 @@
 .categories div a:hover {
     text-decoration: none;
     color: #222222;
+}
+
+.centered-text {
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }

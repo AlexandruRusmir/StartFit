@@ -1,4 +1,5 @@
 <?php
+    $receivedID = $receivedID ?? null;
 ?>
 <h1>
     Add a new Exercise

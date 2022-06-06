@@ -22,6 +22,21 @@ h3 {
     text-align: center;
 }
 
+nav .navbar-nav li .logout{
+    color: #e71111 !important;
+}
+
+nav .navbar-nav li .login{
+    color: #29de29 !important;
+}
+
+.centered-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 .centered {
     margin: 0 auto;
 }
@@ -63,19 +78,8 @@ h3 {
     box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
-.logout {
-    background-color: #ff4c4c;
-    padding: 0 20px;
-    color: #ffffff;
-    border-radius: 20px;
-}
 
-.login {
-    background-color: #ff4c4c;
-    padding: 0 30px;
-    color: #ffffff;
-    border-radius: 20px;
-}
+
 
 .user-box {
     text-align: center;

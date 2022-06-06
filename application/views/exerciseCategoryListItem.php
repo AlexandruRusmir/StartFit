@@ -11,6 +11,6 @@ $category = $category ?? null;
         <p>Category: <?= $category->name ?> </p>
     </div>
     <div class="col-4">
-        <button data-id=<?="{$category->id}" ?> class='delete-category-button'>Delete category</button>
+        <button data-id=<?="{$category->id}" ?> class='delete-button'>Delete category</button>
     </div>
 </div>
