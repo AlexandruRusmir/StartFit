@@ -21,10 +21,14 @@ return [
             'name' => 'Exercise categories',
             'url' => URL::site('exerciseHandling/display_exercise_categories')
         ],
+        'display_animations'=> [
+            'name' => 'Animations',
+            'url' => URL::site('exerciseHandling/display_add_animation_view')
+        ],
         'display_exercises'=> [
             'name' => 'Display exercises',
             'url' => URL::site('exerciseHandling/display_exercises')
-        ],
+        ]
     ],
 
     'superAdminItems' => [

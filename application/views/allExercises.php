@@ -81,11 +81,22 @@
             return exerciseHTML;
         },
 
+        exerciseRemove: function (event) {
+            toBeDeletedExercise = event.target.result;
+
+            for (let i = 0; i < this.allExercises.length; i++) {
+                if (this.allExercises[i].id == toBeDeletedExercise.id) {
+                    this.allExercises.splice(i, 1);
+                }
+            }
+        },
+
         addListenersToButtons: function (exerciseElement) {
             exerciseElement.querySelector('.delete-button').addEvent('click', (event) => {
-                    this.deleteExerciseByID.send({
-                            data: {'id': event.target.result}
-                        });
+                this.exerciseRemove(event);
+                this.deleteExerciseByID.send({
+                    data: {'id': event.target.result}
+                });
             });
 
             exerciseElement.querySelector('.modify-button').addEvent('click', (event) => {
@@ -96,7 +107,7 @@
         updateAllExercisesList: function () {
             this.allExercisesDiv.innerHTML = '';
 
-            this.allExercises.forEach( exercise => {
+            this.allExercises.forEach(exercise => {
                 exerciseHTML = this.returnHTMLStringForExercise(exercise);
                 exerciseElement = createElementFromHTML(exerciseHTML);
 

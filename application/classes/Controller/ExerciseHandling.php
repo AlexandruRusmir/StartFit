@@ -67,7 +67,6 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
     {
         $category = $this->request->post('category');
 
-        $alreadyExistentName = false;
         $existentCategories = (new Model_Category())->where('name', '=', $category)->find();
         if ($existentCategories->loaded()) {
             $this->response->body('Category name already in use!');
@@ -81,12 +80,51 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
 
     }
 
+    public function action_display_add_animation_view()
+    {
+        $this->template->main = View::factory('addAnimationView');
+    }
+
+    public function action_add_animation()
+    {
+        $animation = json_decode($this->request->post('animation'));
+
+        $existentAnimations = (new Model_Animation())->where('name', '=', $animation->name)->find();
+        if ($existentAnimations->loaded()) {
+            $this->response->body('Animation name already in use!');
+            return;
+        }
+
+        $animationModel = ORM::factory('animation');
+        $this->saveAnimation($animationModel, $animation);
+
+        $this->response->body();
+    }
+
+    public function action_get_animations_json_by_keyword()
+    {
+        $keyword = $this->request->query('keyword');
+        $allAnimations = (new Model_Animation())->where('name', 'LIKE', "%{$keyword}%")->find_all();
+        $animationsArray = [];
+        foreach ($allAnimations as $animation) {
+            $animationsArray[] = $animation->name;
+        }
+        $animationJson = json_encode($animationsArray);
+
+        $this->response->body($animationJson);
+    }
+
     public function action_add_exercise()
     {
         $exercise = json_decode($this->request->post('exercise'));
 
-        $exerciseModel = ORM::factory('exercise');
+        $existentExercises = (new Model_Animation())->where('name', '=', $exercise->name)->find();
+        if ($existentExercises->loaded()) {
+            $this->response->body('Animation name already in use!');
+            return;
+        }
 
+        $exerciseModel = ORM::factory('exercise');
         $this->saveExercise($exerciseModel, $exercise);
 
         $this->response->body();
@@ -138,6 +176,14 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         return $exerciseObject;
     }
 
+    private function saveAnimation(Model_Animation $animationModel, $animation): void
+    {
+        $animationModel->setName($animation->name);
+        $animationModel->setURL($animation->gifUrl);
+
+        $animationModel->save();
+    }
+
     private function saveExercise(Model_Exercise $exerciseModel, $exercise)
     {
 
@@ -151,4 +197,5 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
             $exerciseModel->add('categories', ORM::factory('category', $category->id));
         }
     }
+
 }
