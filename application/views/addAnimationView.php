@@ -25,31 +25,17 @@
     </div>
 
     <div class="d-flex">
-        <button type="submit" class="add-button" id="add-animation-button">Add Exercise</button>
+        <button type="submit" class="add-button" id="add-animation-button">Add Animation</button>
     </div>
 </div>
 
-<h4>Existent animations</h4>
-<div class="form-container">
-    <div class="input-group">
-        <input id='input-search' type="text" placeholder="Search by animation name" name="username" required>
-    </div>
-</div>
-
-<div id="animations-list">
-
-</div>
 
 <script>
     const animationsViewHandler = {
 
-        inputSearch: $('input-search'),
         animationNameInput: $('animation-name'),
         animationURLInput: $('animation-url'),
-        selectedCategoriesDiv: $('animations-list'),
         addButton: $('add-animation-button'),
-
-        allAnimations: [],
 
         validateInputs: function () {
             let isValid = true;
@@ -64,28 +50,15 @@
         animationPostRequest: new Request({
             url: '<?= URL::site('exerciseHandling/add_animation')?>',
             method: 'post',
-            onSuccess: (response) => {
+            onSucces: (response) => {
                 animationsViewHandler.animationNameInput.value = '';
                 animationsViewHandler.animationURLInput.value = '';
 
-                // animationsViewHandler.updateSelectedCategoriesDiv();
-
                 animationsViewHandler.addButton.removeClass('disabled');
-            }
-        }),
-
-        onSuccessAnimationsListRequest: function (responseJSON, responseText) {
-            this.allAnimations = responseJSON;
-            console.log(responseJSON[0])
-            //this.updateAllExercisesList();
-        },
-
-        animationsListRequest: new Request.JSON({
-            url: '<?= URL::site('exerciseHandling/get_animations_json_by_keyword')?>',
-            method: 'get',
-            onSuccess: function (responseJSON, responseText) {
-                animationsViewHandler.onSuccessAnimationsListRequest(responseJSON, responseText);
             },
+            onFailure: (xhr) => {
+                console.log(xhr);
+            }
         }),
 
         submitButtonClick: function () {
@@ -107,12 +80,6 @@
         },
 
         init: function () {
-            this.inputSearch.addEvent('keyup', () => {
-                this.animationsListRequest.send({
-                    data: {'keyword': this.inputSearch.value},
-                });
-            });
-
             $$('.form-control').addEvent('focus', (event) => {
                 event.target.removeClass('is-invalid');
             });

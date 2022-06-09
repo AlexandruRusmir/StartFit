@@ -12,6 +12,13 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $this->template->main = View::factory('addExercise');
     }
 
+    public function action_display_edit_exercise()
+    {
+        $id = $this->request->param('id');
+
+        $this->template->main = View::factory('addExercise', ['receivedID' => $id]);
+    }
+
     public function action_delete_category_by_post_ID()
     {
         $categoryId = $this->request->post('id');
@@ -85,6 +92,11 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $this->template->main = View::factory('addAnimationView');
     }
 
+    public function action_display_animations_view()
+    {
+        $this->template->main = View::factory('allAnimationsView');
+    }
+
     public function action_add_animation()
     {
         $animation = json_decode($this->request->post('animation'));
@@ -92,35 +104,47 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $existentAnimations = (new Model_Animation())->where('name', '=', $animation->name)->find();
         if ($existentAnimations->loaded()) {
             $this->response->body('Animation name already in use!');
+            $this->response->status(409);
             return;
         }
 
         $animationModel = ORM::factory('animation');
         $this->saveAnimation($animationModel, $animation);
 
-        $this->response->body();
+        $this->response->body('Animation successfully added!');
     }
 
     public function action_get_animations_json_by_keyword()
     {
         $keyword = $this->request->query('keyword');
+
+
         $allAnimations = (new Model_Animation())->where('name', 'LIKE', "%{$keyword}%")->find_all();
         $animationsArray = [];
         foreach ($allAnimations as $animation) {
-            $animationsArray[] = $animation->name;
+            $animationsArray[] = $this->getAnimationObject($animation);
         }
         $animationJson = json_encode($animationsArray);
 
         $this->response->body($animationJson);
     }
 
+    public function action_delete_animation_by_post_id()
+    {
+        $animationId = $this->request->post('id');
+
+        $animation = ORM::factory('animation', $animationId);
+        $animation->delete();
+    }
+
     public function action_add_exercise()
     {
         $exercise = json_decode($this->request->post('exercise'));
 
-        $existentExercises = (new Model_Animation())->where('name', '=', $exercise->name)->find();
+        $existentExercises = (new Model_Exercise())->where('name', '=', $exercise->name)->find();
         if ($existentExercises->loaded()) {
-            $this->response->body('Animation name already in use!');
+            $this->response->body('Exercise name already in use!');
+            $this->response->status(409);
             return;
         }
 
@@ -136,6 +160,8 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
 
         $exercise = ORM::factory('exercise', $exerciseId);
         $exercise->delete();
+
+        $this->response->body('Successfully deleted');
     }
 
     public function action_get_exercises_json_by_keyword()
@@ -153,12 +179,25 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $this->response->body($exercisesJson);
     }
 
+    private function getAnimationObject($animation): object
+    {
+        $animationObject = (object)[];
+        $animationObject->id = $animation->getID();
+        $animationObject->name = $animation->getName();
+        $animationObject->gifURL = $animation->getURL();
+
+        return $animationObject;
+    }
+
     private function getCustomExerciseObject($exercise): object
     {
         $exerciseObject = (object)[];
         $exerciseObject->id = $exercise->getID();
         $exerciseObject->name = $exercise->getName();
-        $exerciseObject->gifURL = $exercise->getGifURL();
+
+        $animation = ORM::factory('animation', $exercise->getAnimationID());
+        $exerciseObject->gifURL = $animation->getURL();
+
         $exerciseObject->defaultDuration = $exercise->getDefaultDuration();
         $exerciseObject->defaultBreakTime = $exercise->getDefaultBreakTime();
 
@@ -188,7 +227,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
     {
 
         $exerciseModel->setName($exercise->name);
-        $exerciseModel->setGifURL($exercise->gifUrl);
+        $exerciseModel->setAnimationID($exercise->animationID);
         $exerciseModel->setDefaultDuration($exercise->duration);
         $exerciseModel->setDefaultBreakTime($exercise->breakTime);
         $exerciseModel->save();

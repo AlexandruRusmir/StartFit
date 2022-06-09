@@ -89,7 +89,8 @@
     padding-top: 10px;
 }
 
-.categories {
+.search-results {
+    z-index: 99;
     background-color: #F8F8F8;
     display: flex;
     margin-top: 50px;
@@ -100,16 +101,16 @@
     flex-direction: column;
 }
 
-.categories div {
+.search-results div {
     background-color: #F8F8F8;
     padding: 10px 50px;
 }
 
-.categories div a{
+.search-results div a{
     color: #666666;
 }
 
-.categories div a:hover {
+.search-results div a:hover {
     text-decoration: none;
     color: #222222;
 }

@@ -24,14 +24,14 @@ class Model_Exercise extends ORM
         return $this->name;
     }
 
-    public function setGifURL(string $gifURL): void
+    public function setAnimationID(string $animationID): void
     {
-        $this->gif_URL = $gifURL;
+        $this->animation_id = $animationID;
     }
 
-    public function getGifURL(): string
+    public function getAnimationID(): int
     {
-        return $this->gif_URL;
+        return $this->animation_id;
     }
 
     public function setDefaultDuration(int $defaultDuration): void

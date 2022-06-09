@@ -16,12 +16,18 @@
     </div>
 
     <div>
-        <label>Provide new exercise GIF Url: </label>
+        <label>Provide an exercise animation: </label>
         <div class="input-group">
-            <input id='exercise-gif' type="text" placeholder="Exercise GIF" autocomplete="off"
+            <input id='exercise-animation' type="text" placeholder="Search for animation" autocomplete="off"
                    class='form-control' required>
-            <div class="invalid-feedback">Please provide a GIF Url!</div>
+            <div id='matching-animations' class="search-results position-absolute">
+
+            </div>
+            <div class="invalid-feedback">Please choose an animation for the exercise!</div>
         </div>
+    </div>
+    <div id="selected-animation">
+
     </div>
 
     <div>
@@ -48,14 +54,13 @@
         <div class="input-group position-relative">
             <input id='input-search' type="text" placeholder="Search by category name" autocomplete="off"
                    class="form-control">
-            <div id='matching-categories' class="categories position-absolute">
+            <div id='matching-categories' class="search-results position-absolute">
 
             </div>
             <div class="invalid-feedback">Please provide at least one category!</div>
 
         </div>
     </div>
-
     <div id="selected-categories" class="text-nowrap">
 
     </div>
@@ -70,7 +75,9 @@
 
         inputSearch: $('input-search'),
         exerciseNameInput: $('exercise-name'),
-        exerciseGifInput: $('exercise-gif'),
+        exerciseAnimationInputSearch: $('exercise-animation'),
+        matchingAnimationsDiv: $('matching-animations'),
+        selectedAnimationDiv: $('selected-animation'),
         exerciseDurationInput: $('exercise-duration'),
         exerciseBreakTime: $('exercise-break-time'),
         matchingCategoriesDiv: $('matching-categories'),
@@ -78,7 +85,7 @@
         addButton: $('add-exercise-button'),
         errorMessage: $('error'),
 
-        allReceivedCategories: [],
+        selectedAnimationID: null,
         selectedCategories: [],
 
         validateInputs: function () {
@@ -86,7 +93,7 @@
 
             !this.exerciseNameInput.value && this.exerciseNameInput.addClass('is-invalid') && (isValid = false);
 
-            !this.exerciseGifInput.value && this.exerciseGifInput.addClass('is-invalid') && (isValid = false);
+            !this.selectedAnimationID && this.exerciseAnimationInputSearch.addClass('is-invalid') && (isValid = false);
 
             !this.exerciseDurationInput.value && this.exerciseDurationInput.addClass('is-invalid') && (isValid = false);
 
@@ -109,23 +116,45 @@
             this.updateSelectedCategoriesDiv();
         },
 
+        updateAnimationsList: function () {
+        },
+
         updateSelectedCategoriesDiv: function () {
             this.selectedCategoriesDiv.innerHTML = '';
 
             this.selectedCategories.forEach((category) => {
                 categoryHTML = `<div class="d-inline-block"><span class="selected-category"> ${category.name} </span>
                                         <button class="remove-category-button"> X </button></div>`;
-                categoryHTML = createElementFromHTML(categoryHTML);
-                categoryHTML.lastChild.result = category;
+                categoryElement = createElementFromHTML(categoryHTML);
+                categoryElement.lastChild.result = category;
 
-                categoryHTML.lastChild.addEventListener("click", (event) => this.categoryRemove(event));
-                this.selectedCategoriesDiv.appendChild(categoryHTML);
+                categoryElement.lastChild.addEventListener("click", (event) => this.categoryRemove(event));
+                this.selectedCategoriesDiv.appendChild(categoryElement);
             });
 
         },
 
-        categoryClick: function (event) {
+        handleAnimationClick: function (event) {
             event.preventDefault();
+
+            this.exerciseAnimationInputSearch.value = '';
+
+            console.log(event.target.result);
+            let animation = event.target.result;
+            this.selectedAnimationDiv.innerHTML = '';
+            animationHTML = `<div class="d-inline-block"><span class="selected-category"> ${animation.name} </span></div>`;
+            animationElement = createElementFromHTML(animationHTML);
+            this.selectedAnimationDiv.appendChild(animationElement);
+
+            this.selectedAnimationID = animation.id;
+            console.log(this.selectedAnimationID);
+        },
+
+        handleCategoryClick: function (event) {
+            event.preventDefault();
+
+            this.inputSearch.value = '';
+
             let targetCategory = event.target.result;
             let alreadyInArray = false;
             this.selectedCategories.forEach((category) => {
@@ -140,18 +169,42 @@
             this.updateSelectedCategoriesDiv();
         },
 
-        onSuccessCategoriesListRequest: function (responseJSON, responseText) {
-            this.allReceivedCategories = responseJSON;
+        onSuccessAnimationsListRequest: function (responseJSON, responseText) {
+            this.matchingAnimationsDiv.innerHTML = '';
 
+            responseJSON.forEach((animation) => {
+                animationHTML = `<div><a href="#"> ${animation.name} </a></div>`
+
+                animationElement = createElementFromHTML(animationHTML);
+                animationElement.firstChild.result = animation;
+
+                animationElement.firstChild.addEventListener("click", (event) => this.handleAnimationClick(event));
+                this.matchingAnimationsDiv.appendChild(animationElement);
+            });
+        },
+
+        animationsListRequest: new Request.JSON({
+            url: '<?= URL::site('exerciseHandling/get_animations_json_by_keyword')?>',
+            method: 'get',
+            onSuccess: function (responseJSON, responseText) {
+                exercisesViewHandler.onSuccessAnimationsListRequest(responseJSON, responseText);
+            },
+        }),
+
+        onSuccessCategoriesListRequest: function (responseJSON, responseText) {
             this.matchingCategoriesDiv.innerHTML = '';
             responseJSON.forEach((category) => {
-                categoryHTML = `<div><a href="#"> ${category.name} </a></div>`
+                const categoryHTML = `<div><a href="#"> ${category.name} </a></div>`
 
-                categoryHTML = createElementFromHTML(categoryHTML);
-                categoryHTML.firstChild.result = category;
+                const categoryElement = createElementFromHTML(categoryHTML);
+                categoryElement.firstChild.result = category;
 
-                categoryHTML.addEventListener("click", (event) => this.categoryClick(event));
-                this.matchingCategoriesDiv.appendChild(categoryHTML);
+                console.log(categoryElement);
+                console.log(categoryElement.firstChild);
+                console.log(categoryElement.firstChild.result);
+
+                categoryElement.firstChild.addEvent("click", (event) => this.handleCategoryClick(event));
+                this.matchingCategoriesDiv.appendChild(categoryElement);
             });
         },
 
@@ -166,9 +219,10 @@
             method: 'post',
             onSuccess: (response) => {
                 exercisesViewHandler.exerciseNameInput.value = '';
-                exercisesViewHandler.exerciseGifInput.value = '';
+                exercisesViewHandler.exerciseAnimationInputSearch.value = '';
                 exercisesViewHandler.exerciseDurationInput.value = '';
                 exercisesViewHandler.exerciseBreakTime.value = '';
+                exercisesViewHandler.selectedAnimationDiv.innerHTML = '';
                 exercisesViewHandler.selectedCategories = [];
                 exercisesViewHandler.updateSelectedCategoriesDiv();
 
@@ -184,7 +238,7 @@
 
             let exerciseObject = {
                 name: this.exerciseNameInput.value,
-                gifUrl: this.exerciseGifInput.value,
+                animationID: this.selectedAnimationID,
                 duration: this.exerciseDurationInput.value,
                 breakTime: this.exerciseBreakTime.value,
                 categories: this.selectedCategories
@@ -207,13 +261,25 @@
                 });
             });
 
+            let alreadyLoaded = <?php ?>
+
+            this.exerciseAnimationInputSearch.addEvent('keyup', () => {
+                if(this.exerciseAnimationInputSearch.value.length < 2) {
+                    this.matchingAnimationsDiv.innerHTML = '';
+                    return;
+                }
+                this.animationsListRequest.send({
+                    data: {'keyword': this.exerciseAnimationInputSearch.value},
+                });
+            });
+
+
             $$('.form-control').addEvent('focus', (event) => {
                 event.target.removeClass('is-invalid');
             });
 
             this.addButton.addEvent('click', () => this.submitButtonClick());
         }
-
     };
 
     window.addEvent('domready', function () {

@@ -5,9 +5,6 @@
        class="go-to-add-exercise-page-button d-inline-block">Add exercise</a>
 </div>
 
-<?php
-?>
-
 <h1>
     Stored Exercises
 </h1>
@@ -50,7 +47,7 @@
 
                                     <div class="col-1">
                                         <div class="centered-div">
-                                            ${exercise.defaultBreakTime}
+                                            ${exercise.defaultDuration}
                                         </div class="centered-div">
                                     </div>
 
@@ -91,6 +88,7 @@
             }
         },
 
+
         addListenersToButtons: function (exerciseElement) {
             exerciseElement.querySelector('.delete-button').addEvent('click', (event) => {
                 this.exerciseRemove(event);
@@ -100,7 +98,7 @@
             });
 
             exerciseElement.querySelector('.modify-button').addEvent('click', (event) => {
-                console.log(event.target.result);
+                window.location.href = "<?= URL::site('exerciseHandling/display_edit_exercise')?>" + "?id=" + event.target.result;
             });
         },
 

@@ -23,7 +23,7 @@ return [
         ],
         'display_animations'=> [
             'name' => 'Animations',
-            'url' => URL::site('exerciseHandling/display_add_animation_view')
+            'url' => URL::site('exerciseHandling/display_animations_view')
         ],
         'display_exercises'=> [
             'name' => 'Display exercises',
