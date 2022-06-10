@@ -17,7 +17,7 @@
 <body>
     <?= $header; ?>
 
-    <div class="container">
+    <div>
         <?= $main; ?>
     </div>
 

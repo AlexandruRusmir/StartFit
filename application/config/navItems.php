@@ -18,7 +18,7 @@ return [
 
     'adminItems' => [
         'display_exercise_categories'=> [
-            'name' => 'Exercise categories',
+            'name' => 'Categories',
             'url' => URL::site('exerciseHandling/display_exercise_categories')
         ],
         'display_animations'=> [
@@ -26,14 +26,14 @@ return [
             'url' => URL::site('exerciseHandling/display_animations_view')
         ],
         'display_exercises'=> [
-            'name' => 'Display exercises',
+            'name' => 'Exercises',
             'url' => URL::site('exerciseHandling/display_exercises')
         ]
     ],
 
     'superAdminItems' => [
         'users_list' => [
-            'name' => 'Users list',
+            'name' => 'Users',
             'url' => URL::site('usersHandling/display_users')
         ]
     ]

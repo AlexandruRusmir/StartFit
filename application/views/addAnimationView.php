@@ -1,31 +1,33 @@
 <?php
 ?>
 
-<h1>
-    Animations
-</h1>
+<div class="container">
+    <h1>
+        Animations
+    </h1>
 
-<div class="form-container" id="add-exercise-input-container">
-    <div>
-        <label>Provide new exercise name: </label>
-        <div class="input-group">
-            <input id='animation-name' type="text" placeholder="Animation Name" autocomplete="off"
-                   class='form-control' required>
-            <div class="invalid-feedback">Please provide a valid animation name!</div>
+    <div class="form-container" id="add-exercise-input-container">
+        <div>
+            <label>Provide new exercise name: </label>
+            <div class="input-group">
+                <input id='animation-name' type="text" placeholder="Animation Name" autocomplete="off"
+                       class='form-control' required>
+                <div class="invalid-feedback">Please provide a valid animation name!</div>
+            </div>
         </div>
-    </div>
 
-    <div>
-        <label>Provide animation URL: </label>
-        <div class="input-group">
-            <input id='animation-url' type="text" placeholder="Animation URL" autocomplete="off"
-                   class='form-control' required>
-            <div class="invalid-feedback">Please provide an animation URL!</div>
+        <div>
+            <label>Provide animation URL: </label>
+            <div class="input-group">
+                <input id='animation-url' type="text" placeholder="Animation URL" autocomplete="off"
+                       class='form-control' required>
+                <div class="invalid-feedback">Please provide an animation URL!</div>
+            </div>
         </div>
-    </div>
 
-    <div class="d-flex">
-        <button type="submit" class="add-button" id="add-animation-button">Add Animation</button>
+        <div class="d-flex">
+            <button type="submit" class="add-button" id="add-animation-button">Add Animation</button>
+        </div>
     </div>
 </div>
 

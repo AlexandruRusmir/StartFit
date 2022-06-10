@@ -151,7 +151,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $exerciseModel = ORM::factory('exercise');
         $this->saveExercise($exerciseModel, $exercise);
 
-        $this->response->body();
+        $this->response->body('Exercise successfully added!');
     }
 
     public function action_delete_exercise_by_post_id()
@@ -177,6 +177,45 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $exercisesJson = json_encode($exercisesArray);
 
         $this->response->body($exercisesJson);
+    }
+
+    public function action_edit_exercise()
+    {
+        $exerciseToBeEdited = json_decode($this->request->post('exerciseToBeEdited'));
+
+        $toBeEditedExercise = new Model_Exercise($exerciseToBeEdited->id);
+
+        $this->saveExercise($toBeEditedExercise, $exerciseToBeEdited);
+    }
+
+    public function action_get_exercise_to_edit_by_post_id()
+    {
+        $exerciseId = $this->request->post('id');
+
+        $exerciseToEdit = (object)[];
+        $exercise = new Model_Exercise($exerciseId);
+
+        $exerciseToEdit->id = $exerciseId;
+        $exerciseToEdit->name = $exercise->getName();
+        $exerciseToEdit->animationID = $exercise->getAnimationID();
+        $exerciseToEdit->duration = $exercise->getDefaultDuration();
+        $exerciseToEdit->breakTime = $exercise->getDefaultBreakTime();
+
+        $animation = new Model_Animation($exerciseToEdit->animationID);
+        $exerciseToEdit->animationName = $animation->getName();
+
+        $categories = $exercise->categories->find_all();
+        $categoriesArray = [];
+        foreach ($categories as $category) {
+            $categoryObject = (object)[];
+            $categoryObject->name = $category->getName();
+            $categoryObject->id = $category->getID();
+            $categoriesArray[] = $categoryObject;
+        }
+
+        $exerciseToEdit->categories = $categoriesArray;
+
+        $this->response->body(json_encode($exerciseToEdit));
     }
 
     private function getAnimationObject($animation): object
@@ -232,7 +271,13 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $exerciseModel->setDefaultBreakTime($exercise->breakTime);
         $exerciseModel->save();
 
+        foreach ($exerciseModel->categories->find_all() as $category)
+        {
+            $exerciseModel->remove('categories', $category);
+        }
+
         foreach ($exercise->categories as $category) {
+
             $exerciseModel->add('categories', ORM::factory('category', $category->id));
         }
     }

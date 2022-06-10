@@ -1,21 +1,24 @@
 <?php
 ?>
-<div class="row float-right">
-    <a href="<?= URL::site('exerciseHandling/display_add_exercise') ?>"
-       class="go-to-add-exercise-page-button d-inline-block">Add exercise</a>
-</div>
 
-<h1>
-    Stored Exercises
-</h1>
+<div class="container">
+    <div class="row float-right">
+        <a href="<?= URL::site('exerciseHandling/display_add_exercise') ?>"
+           class="go-to-add-exercise-page-button d-inline-block">Add exercise</a>
+    </div>
 
-<div class="input-group">
-    <input id='input-search' type="text" placeholder="Search for exercise by name" required>
-</div>
+    <h1>
+        Stored Exercises
+    </h1>
+
+    <div class="input-group">
+        <input id='input-search' type="text" placeholder="Search for exercise by name" required>
+    </div>
 
 
-<div id="exercises-list">
+    <div id="exercises-list">
 
+    </div>
 </div>
 
 <script>
@@ -30,6 +33,7 @@
             method: 'post',
             onSuccess: (response) => {
                 exercisesViewHandler.updateAllExercisesList();
+
             }
         }),
 
@@ -57,20 +61,27 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-2">`;
-            exercise.categories.forEach((category) => {
-                exerciseHTML += `
+                                    <div class="col-2">
                                         <div class="centered-div">
-                                                ${category.name}
+                                            <div>`;
+                    exercise.categories.forEach((category) => {
+                        exerciseHTML += `
+                                                <div>
+                                                        ${category.name}
+                                                </div>
+                                            `
+                });
+            exerciseHTML += `                </div>
                                         </div>
-                                        `
-            });
-            exerciseHTML += `
                                     </div>
 
                                     <div class="col-2">
-                                        <button class="delete-button mb-4">Delete exercise</button>
-                                        <button class="modify-button">Modify exercise</button>
+                                        <div class="centered-div">
+                                            <div>
+                                                <button class="delete-button mb-4">Delete exercise</button>
+                                                <button class="modify-button">Modify exercise</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>`;
 
@@ -86,6 +97,8 @@
                     this.allExercises.splice(i, 1);
                 }
             }
+
+            this.updateAllExercisesList
         },
 
 
@@ -98,7 +111,7 @@
             });
 
             exerciseElement.querySelector('.modify-button').addEvent('click', (event) => {
-                window.location.href = "<?= URL::site('exerciseHandling/display_edit_exercise')?>" + "?id=" + event.target.result;
+                window.location.href = "<?= URL::site('exerciseHandling/display_edit_exercise')?>" + "/" + event.target.result;
             });
         },
 

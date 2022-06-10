@@ -2,6 +2,7 @@
 URL::site('exerciseHandling/return');
 ?>
 
+
 <div class="container">
     <div class="row">
         <div class="col-12">

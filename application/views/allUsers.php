@@ -1,17 +1,19 @@
 <?php
 ?>
 
-<h1>
-    Registered Users
-</h1>
+<div class="container">
+    <h1>
+        Registered Users
+    </h1>
 
-<div class="input-group">
-    <input id='input-search' type="text" placeholder="Search by username" name="username" required>
-</div>
+    <div class="input-group">
+        <input id='input-search' type="text" placeholder="Search by username" name="username" required>
+    </div>
 
 
-<div id="users-list">
+    <div id="users-list">
 
+    </div>
 </div>
 
 <script>

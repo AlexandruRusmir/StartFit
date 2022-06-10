@@ -1,23 +1,25 @@
 <?php
 ?>
 
-<h1>
-    Exercise Categories
-</h1>
+<div class="container">
+    <h1>
+        Exercise Categories
+    </h1>
 
-<div class="form-container">
-    <div class="input-group">
-        <input id='input-search' type="text" placeholder="Add an exercise category" name="username" required>
+    <div class="form-container">
+        <div class="input-group">
+            <input id='input-search' type="text" placeholder="Add an exercise category" name="username" required>
+        </div>
+
+        <div class="d-flex">
+            <button type="submit" id='category-add-button' class="add-button">Add Category</button>
+        </div>
     </div>
 
-    <div class="d-flex">
-        <button type="submit" id='category-add-button' class="add-button">Add Category</button>
+    <h5>Current exercise categories:</h5>
+    <div id="categories-list">
+
     </div>
-</div>
-
-<h5>Current exercise categories:</h5>
-<div id="categories-list">
-
 </div>
 
 <script>

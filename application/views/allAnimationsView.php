@@ -1,21 +1,23 @@
 <?php
 ?>
-<div class="row float-right">
-    <a href="<?= URL::site('exerciseHandling/display_add_animation_view') ?>"
-       class="go-to-add-exercise-page-button d-inline-block">Add animation</a>
-</div>
+<div class="container">
+    <div class="row float-right">
+        <a href="<?= URL::site('exerciseHandling/display_add_animation_view') ?>"
+           class="go-to-add-exercise-page-button d-inline-block">Add animation</a>
+    </div>
 
-<h1>
-    Stored Animations
-</h1>
+    <h1>
+        Stored Animations
+    </h1>
 
-<div class="input-group">
-    <input id='input-search' type="text" placeholder="Search for animation by name" required>
-</div>
+    <div class="input-group">
+        <input id='input-search' type="text" placeholder="Search for animation by name" required>
+    </div>
 
 
-<div id="animations-list">
+    <div id="animations-list">
 
+    </div>
 </div>
 
 <script>
