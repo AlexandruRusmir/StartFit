@@ -89,6 +89,10 @@
 
         addListenerToButton: function (animationElement) {
             animationElement.querySelector('.delete-button').addEvent('click', (event) => {
+                if (!confirm("Are you sure you want to delete this animation?")) {
+                    return;
+                }
+
                 this.animationRemove(event);
                 this.deleteAnimationByID.send({
                     data: {'id': event.target.result}

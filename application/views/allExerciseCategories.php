@@ -43,6 +43,10 @@
         const onSuccessCategoryListRequest = (response) => {
             const deleteCategoryButtons = $$('#categories-list .delete-button');
             deleteCategoryButtons.addEvent('click', function () {
+                if (!confirm("Are you sure you want to delete this category?")) {
+                    return;
+                }
+
                 this.addClass('disabled');
                 deleteCategory(this).send();
             });

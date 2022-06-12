@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="finished modified exercise adding">
+    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added exercise modification">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/classes/Controller/ExerciseHandling.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/ExerciseHandling.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/navItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/navItems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/addAnimationView.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/addAnimationView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/addExercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/addExercise.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/allAnimationsView.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allAnimationsView.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/allExerciseCategories.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allExerciseCategories.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/allExercises.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allExercises.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/allUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allUsers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/UserStandard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/exerciseTemplate.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/UserWorkouts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/templates/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/default.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +117,8 @@
       <workItem from="1654577693733" duration="13805000" />
       <workItem from="1654671527320" duration="24343000" />
       <workItem from="1654799789573" duration="885000" />
-      <workItem from="1654843064461" duration="13073000" />
+      <workItem from="1654843064461" duration="13202000" />
+      <workItem from="1655009814067" duration="422000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652860204924</created>
@@ -256,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654800671635</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="added exercise modification">
+      <created>1654865944708</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1654865944708</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +297,7 @@
     <MESSAGE value="added delete button on all exercises page" />
     <MESSAGE value="added animations table and started corresponding page" />
     <MESSAGE value="finished modified exercise adding" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished modified exercise adding" />
+    <MESSAGE value="added exercise modification" />
+    <option name="LAST_COMMIT_MESSAGE" value="added exercise modification" />
   </component>
 </project>

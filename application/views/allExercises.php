@@ -104,6 +104,10 @@
 
         addListenersToButtons: function (exerciseElement) {
             exerciseElement.querySelector('.delete-button').addEvent('click', (event) => {
+                if (!confirm("Are you sure you want to delete this exercise?")) {
+                    return;
+                }
+
                 this.exerciseRemove(event);
                 this.deleteExerciseByID.send({
                     data: {'id': event.target.result}
