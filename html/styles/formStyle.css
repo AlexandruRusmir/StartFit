@@ -41,7 +41,7 @@
 }
 
 .submit-btn:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
     background: #fc2323;
     box-shadow: 0 0 11px rgba(33,33,33,.2);
 }

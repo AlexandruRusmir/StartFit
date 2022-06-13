@@ -22,7 +22,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href=" <?= URL::site('index/index') ?> ">
-        <img src="" style="width: 100px; height: auto" alt="Logo picture"></a>
+        <img class="logo-style" src="../../html/images/logo.png" alt="Logo picture"> </a>
     <button class="navbar-toggler" id="navbarNavButton" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown">
         <span class="navbar-toggler-icon"></span>
     </button>

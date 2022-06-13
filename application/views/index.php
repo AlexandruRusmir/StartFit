@@ -1,97 +1,92 @@
 <?php
-URL::site('exerciseHandling/return');
 ?>
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h1>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </h1>
+<div class="wrapper">
+    <div class="bgimg-1">
+        <div class="caption">
+            <div>
+                <h1 class="text-light">The time to become <span class="text-danger"> Fitter</span> is  <span class="text-danger"> Now!</span></h1>
+            </div>
         </div>
     </div>
 
-    <div class="row pt-5 pb-3">
-        <div class="col-md p-5">
-            <?php
-            echo "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat dapibus condimentum. Nullam ornare pulvinar tellus, quis faucibus lacus finibus.</em>";
-            ?>
-        </div>
-        <div class="col-md">
-            <?= HTML::image('html/images/static_website.svg', ['width' => '300px', 'class' => 'something ok bro'])?>
+    <div class="bg-dark text-light text-center">
+        <h2 class="text-light my-3">Create your home workout!</h2>
+        <div class="mx-5">
+            <p>
+                Once you start working out from home, you may never want to return to the gym again. Think about it: there’s no need to get in a cold car, change into gym clothes, wait for machines, or breathe in all those curious aromas.
+            </p>
+            <p>
+                You spend a lot of time preparing for a workout: you have to pack your gym bag, get in the car, drive to the gym, park, change, and then, finally, hit the floor. Exercising at home allows you to bypass all those inconveniences and focus your time and energy on your workout routine.
+            </p>
+            <p>
+                Exercising around others can be exhilarating, but it can also be intimidating and discouraging. When working out at home, you can go at your own pace, and you don’t have to worry about the judgement of others.
+            </p>
         </div>
     </div>
 
-    <div class="row general">
-        <div class="col-12">
-            <h3>
-                General information
-            </h3>
+    <div class="bgimg-2">
+        <div class="caption">
+            <div>
+                <h1 class="text-light">Enjoy the process!</h1>
+            </div>
         </div>
-        <?php
-        echo "<p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices purus nisl, quis tincidunt mauris tempus eu. Integer auctor justo nisl, nec vestibulum massa commodo sed. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus convallis placerat rutrum. Pellentesque nec iaculis nibh. In ut neque lorem. Vestibulum orci tortor, laoreet viverra tempus in, bibendum in sem. Fusce vitae lobortis tortor, condimentum pretium massa.
-                </p>";
-        ?>
-        <p>
-            Quisque quis congue nulla. Vestibulum lobortis orci vel est cursus pretium. Praesent ultricies interdum imperdiet. Nullam ornare mattis maximus. Maecenas laoreet eu arcu at tincidunt. Praesent dui quam, sagittis vel feugiat in, facilisis at enim. Nullam id ultrices felis. Nullam id rutrum arcu, fringilla viverra ipsum. Aliquam iaculis sem quis quam tempus, non viverra nisl malesuada. Donec accumsan libero quis lectus hendrerit, vitae cursus mauris rhoncus. Fusce suscipit, ligula in hendrerit aliquet, risus neque placerat magna, ac pulvinar elit tellus at magna.
-        </p>
-        <p>
-            Cras eu justo eget ipsum euismod dapibus at a nulla. Proin et blandit felis. Maecenas placerat turpis erat, eget fringilla risus tristique quis. Nunc eu turpis vitae diam imperdiet ultricies. Duis facilisis, tortor at bibendum fermentum, sem mauris ultrices nibh, sed luctus ante tortor a odio. Donec est neque, fringilla eu nibh sodales, blandit malesuada mauris. Fusce a convallis lectus. Nunc eu mattis dui, eu bibendum massa. Mauris et egestas magna. Sed magna quam, commodo ut faucibus nec, posuere sed massa. Phasellus egestas euismod erat id cursus. Vivamus volutpat consequat molestie. Etiam laoreet libero libero, quis pretium eros pretium at. Nullam id nulla nec massa semper lobortis at vitae mi.
-        </p>
     </div>
 
-    <table class="table-content">
-        <tr>
-            <th>Lorem</th>
-            <th>Ipsum</th>
-            <th>Dolor</th>
-        </tr>
-        <tr>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum dolor.</td>
-        </tr>
-        <tr>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum dolor.</td>
-        </tr>
-        <tr>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum dolor.</td>
-        </tr>
-        <tr>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum dolor.</td>
-        </tr>
-        <tr>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum dolor.</td>
-            <td>Lorem ipsum.</td>
-        </tr>
-        <tr>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum dolor.</td>
-        </tr>
-        <tr>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum dolor.</td>
-        </tr>
-        <tr>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum dolor.</td>
-        </tr>
-        <tr>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum.</td>
-            <td>Lorem ipsum dolor.</td>
-        </tr>
-    </table>
+    <div class="bg-dark text-light text-center">
+        <h2 class="text-light my-3">No excuses!</h2>
+        <div class="mx-5">
+            <p>
+                Exercising from home allows you to fit in a workout whenever you’re feeling particularly inspired or energized. Many websites offer pre-recorded classes, which means no more fretting over the class filling up. You can also fit in fitness throughout your day, by getting in a couple of quick sets while you wait for your coffee to brew, oatmeal to cook, or Zoom meeting to start.        </p>
+            <p>
+                A cold night or a particularly difficult day at work may be enough to keep you from going to the gym. But when it comes to meeting your personal fitness goals, consistency is key. A home exercise routine provides the convenience necessary to never miss a workout.
+            </p>
+        </div>
+    </div>
+
+    <div class="bgimg-3">
+        <div class="caption">
+            <div>
+                <h1 class="text-light">Challenge Yourself!</h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="viewer-or-login-div" class="bg-dark text-light text-center">
+
+    </div>
+
+    <div class="bgimg-1">
+        <div class="caption">
+            <div>
+                <h1 class="text-light">What are you waiting for? Start now!</h1>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+    const homeViewHandler = {
+        onSuccessUserDetailsRequest: function (responseText, responseXML) {
+            console.log(responseText)
+        },
+
+        userDetailsRequest: new Request({
+            url: '<?= URL::site('genericUser/get_current_user_information')?>',
+            method: 'get',
+            onSuccess: function (responseText, responseXML) {
+                homeViewHandler.onSuccessUserDetailsRequest(responseText, responseXML);
+            },
+        }),
+
+        init: function () {
+            this.userDetailsRequest.send();
+        }
+
+    };
+
+
+    window.addEvent('domready', function () {
+        homeViewHandler.init();
+    });
+</script>

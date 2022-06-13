@@ -28,6 +28,10 @@
         <div class="d-flex">
             <button type="submit" class="add-button" id="add-animation-button">Add Animation</button>
         </div>
+
+        <div class="d-flex">
+            <p class="error-message" id="error-paragraph"></p>
+        </div>
     </div>
 </div>
 
@@ -59,7 +63,9 @@
                 animationsViewHandler.addButton.removeClass('disabled');
             },
             onFailure: (xhr) => {
-                console.log(xhr);
+                setTimeout(() => {
+                    $('error-paragraph').innerText = `Responded with status: ${xhr.status}, ${xhr.statusText}`;
+                }, 7000)
             }
         }),
 

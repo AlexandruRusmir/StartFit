@@ -16,6 +16,10 @@
         </div>
     </div>
 
+    <div class="d-flex">
+        <p class="error-message" id="error-paragraph"></p>
+    </div>
+
     <h5>Current exercise categories:</h5>
     <div id="categories-list">
 
@@ -74,6 +78,11 @@
                         method: 'get',
                         url: '<?= URL::site('exerciseHandling/return_categories_list')?>',
                     });
+                },
+                onFailure: (xhr) => {
+                    setTimeout(() => {
+                        $('error-paragraph').innerText = `Responded with status: ${xhr.status}, ${xhr.statusText}`;
+                    }, 7000)
                 }
             });
         }

@@ -69,6 +69,10 @@
         <div class="d-flex">
             <button type="submit" class="add-button" id="add-exercise-button">Add Exercise</button>
         </div>
+
+        <div class="d-flex">
+            <p class="error-message" id="error-paragraph"></p>
+        </div>
     </div>
 </div>
 
@@ -225,6 +229,11 @@
                 exercisesViewHandler.updateSelectedCategoriesDiv();
 
                 exercisesViewHandler.addButton.removeClass('disabled');
+            },
+            onFailure: (xhr) => {
+                setTimeout(() => {
+                    $('error-paragraph').innerText = `Responded with status: ${xhr.status}, ${xhr.statusText}`;
+                }, 7000)
             }
         }),
 
@@ -234,6 +243,11 @@
             onSuccess: (response) => {
                 exercisesViewHandler.addButton.removeClass('disabled');
                 window.location.href = "<?= URL::site('exerciseHandling/display_exercises') ?>"
+            },
+            onFailure: (xhr) => {
+                setTimeout(() => {
+                    $('error-paragraph').innerText = `Responded with status: ${xhr.status}, ${xhr.statusText}`;
+                }, 7000)
             }
         }),
 

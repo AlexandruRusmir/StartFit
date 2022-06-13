@@ -1,6 +1,6 @@
-/* Add a black background color to the top navigation */
 * {
     font-family: Trebuchet MS;
+    overflow-x: hidden;
 }
 
 .container{
@@ -22,12 +22,18 @@ h3 {
     text-align: center;
 }
 
+.logo-style {
+    height: 50px;
+    width: auto;
+    border-radius: 10px;
+}
+
 nav .navbar-nav li .logout{
-    color: #e71111 !important;
+    color: #d04a4a !important;
 }
 
 nav .navbar-nav li .login{
-    color: #29de29 !important;
+    color: #4bd34b !important;
 }
 
 .centered-div {
@@ -138,10 +144,6 @@ footer {
 }
 footer .a{
     color: #ff4c4c;
-}
-
-nav.opeeen + .container{
-    padding-top: 100px;
 }
 
 

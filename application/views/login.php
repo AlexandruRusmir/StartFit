@@ -14,7 +14,7 @@ $message = $message ?? '';
             <input type="password" id="password" name="password" placeholder="Password" required/>
         </div>
 
-        <div class="d-flex">
+        <div class="d-flex py-2">
             <input type="submit" name='submit' class="submit-btn"/>
         </div>
         <?= $message; ?>
