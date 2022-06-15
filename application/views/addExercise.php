@@ -1,5 +1,5 @@
 <?php
-    $receivedID = $receivedID ?? 0;
+$receivedID = $receivedID ?? 0;
 ?>
 
 <div class="container">
@@ -68,10 +68,6 @@
 
         <div class="d-flex">
             <button type="submit" class="add-button" id="add-exercise-button">Add Exercise</button>
-        </div>
-
-        <div class="d-flex">
-            <p class="error-message" id="error-paragraph"></p>
         </div>
     </div>
 </div>
@@ -178,9 +174,9 @@
             this.matchingAnimationsDiv.innerHTML = '';
 
             responseJSON.forEach((animation) => {
-                animationHTML = `<div><a href="#"> ${animation.name} </a></div>`
+                let animationHTML = `<div><a href="#"> ${animation.name} </a></div>`
 
-                animationElement = createElementFromHTML(animationHTML);
+                let animationElement = createElementFromHTML(animationHTML);
                 animationElement.firstChild.result = animation;
 
                 animationElement.firstChild.addEventListener("click", (event) => this.handleAnimationClick(event));
@@ -199,11 +195,10 @@
         onSuccessCategoriesListRequest: function (responseJSON, responseText) {
             this.matchingCategoriesDiv.innerHTML = '';
             responseJSON.forEach((category) => {
-                const categoryHTML = `<div><a href="#"> ${category.name} </a></div>`
+                let categoryHTML = `<div><a href="#"> ${category.name} </a></div>`;
 
-                const categoryElement = createElementFromHTML(categoryHTML);
+                let categoryElement = createElementFromHTML(categoryHTML);
                 categoryElement.firstChild.result = category;
-
 
                 categoryElement.firstChild.addEvent("click", (event) => this.handleCategoryClick(event));
                 this.matchingCategoriesDiv.appendChild(categoryElement);
@@ -229,11 +224,6 @@
                 exercisesViewHandler.updateSelectedCategoriesDiv();
 
                 exercisesViewHandler.addButton.removeClass('disabled');
-            },
-            onFailure: (xhr) => {
-                setTimeout(() => {
-                    $('error-paragraph').innerText = `Responded with status: ${xhr.status}, ${xhr.statusText}`;
-                }, 7000)
             }
         }),
 
@@ -243,11 +233,6 @@
             onSuccess: (response) => {
                 exercisesViewHandler.addButton.removeClass('disabled');
                 window.location.href = "<?= URL::site('exerciseHandling/display_exercises') ?>"
-            },
-            onFailure: (xhr) => {
-                setTimeout(() => {
-                    $('error-paragraph').innerText = `Responded with status: ${xhr.status}, ${xhr.statusText}`;
-                }, 7000)
             }
         }),
 
@@ -291,7 +276,7 @@
             this.addButton.addClass('disabled');
 
             this.exerciseEditRequest.send({
-               data: {'exerciseToBeEdited': exerciseJSON}
+                data: {'exerciseToBeEdited': exerciseJSON}
             });
         },
 

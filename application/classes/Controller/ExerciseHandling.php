@@ -218,7 +218,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $this->response->body(json_encode($exerciseToEdit));
     }
 
-    private function getAnimationObject($animation): object
+    private function getAnimationObject(Model_Animation $animation): object
     {
         $animationObject = (object)[];
         $animationObject->id = $animation->getID();
@@ -228,7 +228,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         return $animationObject;
     }
 
-    private function getCustomExerciseObject($exercise): object
+    private function getCustomExerciseObject(Model_Exercise $exercise): object
     {
         $exerciseObject = (object)[];
         $exerciseObject->id = $exercise->getID();

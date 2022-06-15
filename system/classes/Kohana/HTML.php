@@ -276,7 +276,7 @@ class Kohana_HTML {
 		}
 
 		// Add the image link
-		$attributes['scripts'] = $file;
+		$attributes['src'] = $file;
 
 		return '<img'.HTML::attributes($attributes).' />';
 	}

@@ -118,15 +118,11 @@
 
         init: function () {
             this.animationsListRequest.send({
-                method: 'get',
-                url: "<?= URL::site('exerciseHandling/get_animations_json_by_keyword') ?>",
                 data: {'keyword': ''}
             });
 
             this.inputSearch.addEvent('keyup', function () {
                 animationsViewHandler.animationsListRequest.send({
-                    method: 'get',
-                    url: "<?= URL::site('exerciseHandling/get_animations_json_by_keyword') ?>",
                     data: {'keyword': animationsViewHandler.inputSearch.value}
                 });
             });

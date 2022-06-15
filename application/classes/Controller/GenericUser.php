@@ -2,7 +2,6 @@
 
 class Controller_GenericUser extends Controller_Standard
 {
-
     public function action_get_current_user_information()
     {
         if (Auth::instance()->logged_in('login')) {

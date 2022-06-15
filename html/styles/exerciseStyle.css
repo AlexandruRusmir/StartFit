@@ -102,6 +102,7 @@
 }
 
 .search-results div {
+    z-index: 99;
     background-color: #F8F8F8;
     padding: 10px 50px;
 }

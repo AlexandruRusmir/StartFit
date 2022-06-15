@@ -123,8 +123,8 @@
             this.allExercisesDiv.innerHTML = '';
 
             this.allExercises.forEach(exercise => {
-                exerciseHTML = this.returnHTMLStringForExercise(exercise);
-                exerciseElement = createElementFromHTML(exerciseHTML);
+                let exerciseHTML = this.returnHTMLStringForExercise(exercise);
+                let exerciseElement = createElementFromHTML(exerciseHTML);
 
                 this.allExercisesDiv.appendChild(exerciseElement);
 
