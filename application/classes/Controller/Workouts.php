@@ -33,12 +33,20 @@ class Controller_Workouts extends Controller_UserStandard
             $query = $query->where('categories_exercises.category_id', 'IN', $categoryIDs);
         }
         $query = $query->where('exercises.name', 'LIKE', "%{$searchInput}%");
-
         $exercises = $query->limit(20)->execute();
 
         $exercisesArray = [];
+        $alreadyInArray = false;
         foreach ($exercises as $exercise) {
-            $exercisesArray[] = $this->getExerciseObject($exercise);
+            foreach ($exercisesArray as $exerciseObject) {
+                $alreadyInArray = false;
+                if ($exerciseObject->id === $exercise['id']) {
+                    $alreadyInArray = true;
+                }
+            }
+            if (!$alreadyInArray) {
+                $exercisesArray[] = $this->getExerciseObject($exercise);
+            }
         }
 
         $matchingExercises = json_encode($exercisesArray);

@@ -82,6 +82,62 @@
     margin: 0 auto;
 }
 
+.exercise-card {
+    border-radius: 7px;
+    margin: 10px 0;
+    border: groove;
+}
+
+.exercise-card-text {
+    background-color: #8f8e8e;
+    color: #ffffff;
+}
+
+.exercise-card-animation {
+    height: 100px;
+    width: auto;
+}
+
+.add-to-workout-overlay {
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: .3s ease-in-out;
+}
+
+.add-to-workout-overlay:hover {
+    opacity: 1;
+    background: rgba(77, 79, 77, 0.4);
+    cursor: pointer;
+}
+
+.add-button-overlay {
+    height: 50px;
+    width: auto;
+}
+
+.remove-from-workout-overlay {
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: .3s ease-in-out;
+}
+
+.remove-from-workout-overlay:hover {
+    opacity: 1;
+    background: rgba(77, 79, 77, 0.6);
+    cursor: pointer;
+}
+
+.remove-button-overlay {
+    height: 40px;
+    width: auto;
+}
+
 .category-box {
     text-align: center;
     background-color: #F8F8F8;
@@ -114,14 +170,4 @@
 .search-results div a:hover {
     text-decoration: none;
     color: #222222;
-}
-
-.centered-text {
-    position: absolute;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
 }

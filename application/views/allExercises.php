@@ -115,7 +115,8 @@
             });
 
             exerciseElement.querySelector('.modify-button').addEvent('click', (event) => {
-                window.location.href = "<?= URL::site('exerciseHandling/display_edit_exercise')?>" + "/" + event.target.result;
+                window.location.href = "<?= URL::site('exerciseHandling/display_edit_exercise')?>"
+                    + "/" + event.target.result;
             });
         },
 

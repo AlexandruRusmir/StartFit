@@ -62,7 +62,7 @@ $receivedID = $receivedID ?? 0;
 
             </div>
         </div>
-        <div id="selected-categories" class="text-nowrap">
+        <div id="selected-categories" class="text-nowrap row">
 
         </div>
 
@@ -140,7 +140,8 @@ $receivedID = $receivedID ?? 0;
 
             let animation = event.target.result;
             this.selectedAnimationDiv.innerHTML = '';
-            animationHTML = `<div class="d-inline-block mb-4"><span class="selected-category"> ${animation.name} </span></div>`;
+            animationHTML = `<div class="d-inline-block mb-4">
+                                <span class="selected-category"> ${animation.name} </span></div>`;
             animationElement = createElementFromHTML(animationHTML);
             this.selectedAnimationDiv.appendChild(animationElement);
 
@@ -288,7 +289,8 @@ $receivedID = $receivedID ?? 0;
             this.selectedAnimationID = exerciseToEdit.animationID;
 
             this.selectedAnimationDiv.innerHTML = '';
-            animationHTML = `<div class="d-inline-block mb-4"><span class="selected-category"> ${exerciseToEdit.animationName} </span></div>`;
+            animationHTML = `<div class="d-inline-block mb-4">
+                            <span class="selected-category"> ${exerciseToEdit.animationName} </span></div>`;
             animationElement = createElementFromHTML(animationHTML);
             this.selectedAnimationDiv.appendChild(animationElement);
 

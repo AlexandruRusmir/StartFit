@@ -25,7 +25,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href=" <?= URL::site('index/index') ?> ">
         <?= HTML::image('html/images/logo.png', array('alt' => 'Logo picture', 'class' => 'logo-style')); ?></a>
-    <button class="navbar-toggler" id="navbarNavButton" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown">
+    <button class="navbar-toggler" id="navbarNavButton" type="button"
+            data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">

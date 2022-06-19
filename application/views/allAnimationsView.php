@@ -50,7 +50,7 @@
 
         returnHTMLStringForAnimation: function (animation) {
             animationHTML = `<div class='row exercise-box'>
-                                    <div class="col-3">
+                                    <div class="col-3 exercise-card-animation">
                                         <img src="${animation.gifURL}" width="200" height="auto"/>
                                     </div>
 

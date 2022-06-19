@@ -75,7 +75,8 @@
                                             <h2 class="text-light py-3">Start your journey!</h2>
                                             <p>You are currently not logged in. Log in to create your home workout!</p>
                                             <div class="mx-5 d-flex">
-                                                <button class="centered add-button" id="login-button">Register here</button>
+                                                <button class="centered add-button" id="login-button">
+                                                    Register here</button>
                                             </div>
                                            </div>`;
 
@@ -93,7 +94,8 @@
                                             <h2 class="text-light py-3">Get in better shape right now!</h2>
                                             <p>Would you like to create a workout to complete at home right now?</p>
                                             <div class="mx-5 d-flex">
-                                                <button class="centered add-button" id="start-workout-button">Start Workout</button>
+                                                <button class="centered add-button" id="start-workout-button">
+                                                    Start Workout</button>
                                             </div>
                                            </div>`;
 
@@ -110,7 +112,7 @@
         },
 
         userDetailsRequest: new Request({
-            url: '<?= URL::site('genericUser/get_current_user_information')?>',
+            url: '<?= URL::site('index/get_current_user_information')?>',
             method: 'get',
             onSuccess: function (responseText, responseXML) {
                 homeViewHandler.onSuccessUserDetailsRequest(responseText, responseXML);

@@ -22,7 +22,7 @@
         <?= $main; ?>
     </div>
 
-    <footer class="p-4 bg-dark text-white text-center position-relative">
+    <footer class="bg-dark text-white text-center position-relative">
         <div class="container">
             <p class="lead">Copyright &copy; <?= date("Y") ?> FitStart</p>
         </div>

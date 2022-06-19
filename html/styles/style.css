@@ -46,6 +46,16 @@ nav .navbar-nav li .login{
     margin: 0 auto;
 }
 
+.centered-text {
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
 .back-button {
     margin-bottom: 20px;
     background-color: #ff1616;
