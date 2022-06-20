@@ -32,26 +32,31 @@ class Controller_Workouts extends Controller_UserStandard
         if (isset($categoryIDs) && is_array($categoryIDs) && count($categoryIDs)) {
             $query = $query->where('categories_exercises.category_id', 'IN', $categoryIDs);
         }
-        $query = $query->where('exercises.name', 'LIKE', "%{$searchInput}%");
-        $exercises = $query->limit(20)->execute();
+        $query = $query->where('exercises.name', 'LIKE', "%{$searchInput}%")->group_by('exercises.id');
+        $exercises = $query->limit(21)->execute();
 
         $exercisesArray = [];
-        $alreadyInArray = false;
         foreach ($exercises as $exercise) {
-            foreach ($exercisesArray as $exerciseObject) {
-                $alreadyInArray = false;
-                if ($exerciseObject->id === $exercise['id']) {
-                    $alreadyInArray = true;
-                }
-            }
-            if (!$alreadyInArray) {
-                $exercisesArray[] = $this->getExerciseObject($exercise);
-            }
+            $exercisesArray[] = $this->getExerciseObject($exercise);
         }
 
         $matchingExercises = json_encode($exercisesArray);
 
         $this->response->body($matchingExercises);
+    }
+
+    public function action_save_workout()
+    {
+        $workoutExercises = json_decode($this->request->post('workoutExercises'));
+
+        if (!$workoutExercises) {
+            $this->response->body('Can not save a workout without exercises!');
+            $this->response->status(400);
+            return;
+        }
+
+
+
     }
 
     private function getExerciseObject(array $exercise): object
@@ -61,6 +66,8 @@ class Controller_Workouts extends Controller_UserStandard
         $exerciseObject->name = $exercise['name'];
         $animation = new Model_Animation($exercise['animation_id']);
         $exerciseObject->gifUrl = $animation->getURL();
+        $exerciseObject->duration = $exercise['default_duration'];
+        $exerciseObject->breakTime = $exercise['default_break_time'];
 
         return $exerciseObject;
     }

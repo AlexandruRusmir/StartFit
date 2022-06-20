@@ -8,11 +8,12 @@
 
     <div class="form-container">
         <div class="input-group">
+
             <input id='input-search' type="text" placeholder="Search for exercises by name" required>
-        </div>
+            <button class="position-absolute px-3 filter-button" id="filter-button">Filter</button>
+            <div id="categories-boxes" class="py-2 filter-categories">
 
-        <div id="categories-boxes" class="row">
-
+            </div>
         </div>
 
         <div class="d-flex">
@@ -25,19 +26,19 @@
     </div>
 
     <h5>Choose exercises for your workout:</h5>
-    <div class="row mb-5" id="exercises-list">
+    <div class="row" id="exercises-list">
 
     </div>
 
     <div class="fixed-bottom bg-dark pt-1 px-2 text-white" id="selected-exercises-box">
         <div class="centered-div">
-            <h3 class="text-white">Your workout exercises:</h3>
+            <h3 class="text-white">Your workout(<label id="workout-duration"></label>):</h3>
         </div>
 
         <div class="row" id="selected-exercises"></div>
 
         <div class="d-flex">
-            <button id='start-workout-button' class="add-button">Start the Workout!</button>
+            <button id='save-workout-button' class="add-button">Save Workout!</button>
         </div>
     </div>
 </div>
@@ -48,17 +49,23 @@
         categoriesBoxes: $('categories-boxes'),
         searchButton: $('search-button'),
         exercisesListDiv: $('exercises-list'),
+        filterButton: $('filter-button'),
 
         selectedCategoryIDs: [],
 
         selectedExercisesBox: $('selected-exercises-box'),
         selectedExercisesDiv: $('selected-exercises'),
         selectedExercisesForWorkout: [],
+        workoutDuration: $('workout-duration'),
+        totalWorkoutTimeInSeconds: 0,
+
+        saveWorkoutButton: $('save-workout-button'),
 
         addClickEventToExerciseRemoveOverlay: function () {
             $$('.remove-from-workout-overlay').addEvent('click', (event) => {
                 let exerciseToBeRemoved = event.target.result;
                 this.selectedExercisesForWorkout.splice(exerciseToBeRemoved.workoutOrder - 1, 1);
+                this.totalWorkoutTimeInSeconds -= parseInt(exerciseToBeRemoved.duration) + parseInt(exerciseToBeRemoved.breakTime);
 
                 for (let i = exerciseToBeRemoved.workoutOrder - 1; i<this.selectedExercisesForWorkout.length; i++) {
                     this.selectedExercisesForWorkout[i].workoutOrder -= 1;
@@ -69,8 +76,8 @@
         },
 
         returnHTMLStringForSelectedExercise: function (exercise) {
-            exerciseHTML = `<div class="col-2">
-                                <div class="centered exercise-card position-relative">
+            exerciseHTML = `<div class="col-4 col-sm-3 col-md-2">
+                                <div class="centered exercise-card position-relative d-flex flex-column">
                                     <div class="h-40 centered-div exercise-card-text">
                                         <p class="centered">Place: ${exercise.workoutOrder}</p>
                                     </div>
@@ -94,12 +101,16 @@
         updateSelectedExercisesDiv: function () {
             if (!this.selectedExercisesForWorkout.length) {
                 this.selectedExercisesBox.addClass('d-none');
+                this.exercisesListDiv.style.marginBottom = "3rem";
                 return;
             }
 
             this.selectedExercisesBox.removeClass('d-none');
             this.selectedExercisesDiv.innerHTML = '';
 
+            this.exercisesListDiv.style.marginBottom = this.selectedExercisesBox.clientHeight + "px";
+
+            this.workoutDuration.innerText = parseInt(this.totalWorkoutTimeInSeconds / 60) + 'mins and ' +  parseInt(this.totalWorkoutTimeInSeconds % 60) + ' seconds';
             this.selectedExercisesForWorkout.forEach(exercise => {
                 let selectedExerciseHTML = this.returnHTMLStringForSelectedExercise(exercise);
                 let selectedExerciseElement = createElementFromHTML(selectedExerciseHTML);
@@ -132,12 +143,13 @@
         onSuccessCategoriesListRequest: function (responseJSON, responseText) {
             this.categoriesBoxes.innerHTML = '';
             responseJSON.forEach((category) => {
-                const categoryHTML = `<div class="ml-3 mr-1"><input type="checkbox"><span>${category.name}</span></div>`
+                const categoryHTML = `<div class="ml-3 mr-1"><label><input type="checkbox">${category.name}</label></div>`
 
                 const categoryElement = createElementFromHTML(categoryHTML);
-                categoryElement.firstChild.result = category.id;
+                let categoryCheckbox = categoryElement.firstChild.firstChild;
+                categoryCheckbox.result = category.id;
 
-                categoryElement.firstChild.addEvent("click", (event) => this.handleCategoryClick(event));
+                categoryCheckbox.addEvent("click", (event) => this.handleCategoryClick(event));
                 this.categoriesBoxes.appendChild(categoryElement);
             });
         },
@@ -151,8 +163,8 @@
         }),
 
         returnHTMLStringForExercise: function (exercise) {
-            exerciseHTML = `<div class="col-4">
-                                <div class="centered exercise-card position-relative">
+            exerciseHTML = `<div class="col-6 col-md-4 col-lg-3">
+                                <div class="centered exercise-card position-relative d-flex flex-column">
                                     <div class="h-75 centered-div py-2">
                                         <img class="exercise-card-animation" " src="${exercise.gifUrl}">
                                     </div>
@@ -184,9 +196,12 @@
                 let exercise = {
                     name: exerciseToBeAdded.name,
                     exerciseId: exerciseToBeAdded.id,
-                    workoutOrder: this.selectedExercisesForWorkout.length + 1
+                    workoutOrder: this.selectedExercisesForWorkout.length + 1,
+                    duration: exerciseToBeAdded.duration,
+                    breakTime: exerciseToBeAdded.breakTime
                 };
 
+                this.totalWorkoutTimeInSeconds += parseInt(exerciseToBeAdded.duration) + parseInt(exerciseToBeAdded.breakTime);
                 this.selectedExercisesForWorkout.push(exercise);
                 this.updateSelectedExercisesDiv();
             });
@@ -194,6 +209,7 @@
 
         onSuccessSearchForExercisesRequest: function (responseJSON, responseText) {
             this.exercisesListDiv.innerHTML = '';
+            this.categoriesBoxes.addClass('d-none');
 
             responseJSON.forEach(exercise => {
                 let exerciseHtml = this.returnHTMLStringForExercise(exercise);
@@ -229,6 +245,14 @@
             });
         },
 
+        saveWorkoutRequest: new Request.JSON({
+            method: 'post',
+            url: "<?= URL::site('workouts/save_workout') ?>",
+            onSuccess: function (responseJSON, responseText) {
+                window.location.href = "";
+            },
+        }),
+
         init: function () {
             createWorkoutViewHandler.categoriesListRequest.send();
 
@@ -236,6 +260,17 @@
                 () => createWorkoutViewHandler.handleSearchButtonClick());
 
             this.selectedExercisesBox.addClass('d-none');
+            this.categoriesBoxes.addClass('d-none');
+            this.filterButton.addEvent('click', () => {
+               this.categoriesBoxes.toggleClass('d-none');
+            });
+
+            this.saveWorkoutButton.addEvent('click', () => {
+                const exercisesJson = JSON.stringify(this.selectedExercisesForWorkout);
+                this.saveWorkoutRequest.send({
+                    data: {'workoutExercises': exercisesJson}
+                })
+            });
         }
     };
 
