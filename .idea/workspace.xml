@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added exercise select and remove for the workout">
+    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added finishing touches to workout creation page">
+      <change afterPath="$PROJECT_DIR$/application/classes/Model/Workout.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/views/myWorkouts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Controller/ExerciseHandling.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/ExerciseHandling.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/classes/Controller/Workouts.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/Workouts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Model/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Model/Exercise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/navItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/navItems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/addAnimationView.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/addAnimationView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/allExercises.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allExercises.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/createWorkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/createWorkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/templates/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/default.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/styles/exerciseStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/styles/exerciseStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/styles/formStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/styles/formStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +135,8 @@
       <workItem from="1655362343436" duration="3549000" />
       <workItem from="1655552743598" duration="9441000" />
       <workItem from="1655635149116" duration="12951000" />
-      <workItem from="1655708252054" duration="12050000" />
+      <workItem from="1655708252054" duration="12202000" />
+      <workItem from="1655801492844" duration="21331000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652860204924</created>
@@ -290,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655659232293</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="added finishing touches to workout creation page">
+      <created>1655749564538</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1655749564538</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,6 +355,7 @@
     <MESSAGE value="started home page" />
     <MESSAGE value="added exercose filtered search for user" />
     <MESSAGE value="added exercise select and remove for the workout" />
-    <option name="LAST_COMMIT_MESSAGE" value="added exercise select and remove for the workout" />
+    <MESSAGE value="added finishing touches to workout creation page" />
+    <option name="LAST_COMMIT_MESSAGE" value="added finishing touches to workout creation page" />
   </component>
 </project>

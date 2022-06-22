@@ -63,9 +63,8 @@
                 animationsViewHandler.addButton.removeClass('disabled');
             },
             onFailure: (xhr) => {
-                setTimeout(() => {
-                    $('error-paragraph').innerText = `Responded with status: ${xhr.status}, ${xhr.statusText}`;
-                }, 7000)
+                $('error-paragraph').innerText = `Responded with status: ${xhr.status}, ${xhr.statusText}`;
+                animationsViewHandler.addButton.removeClass('disabled');
             }
         }),
 

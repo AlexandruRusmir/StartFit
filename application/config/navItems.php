@@ -6,6 +6,10 @@ return [
             'name' => 'Home',
             'url' => URL::site('index/index')
         ],
+        'workouts' => [
+            'name' => 'My Workouts',
+            'url' => URL::site('workouts/my_workouts')
+        ],
         'login' => [
             'name' => 'Login',
             'url' => URL::site('register/index')

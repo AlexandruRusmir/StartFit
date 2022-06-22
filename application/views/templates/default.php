@@ -22,11 +22,13 @@
         <?= $main; ?>
     </div>
 
-    <footer class="bg-dark text-white text-center position-relative">
-        <div class="container">
-            <p class="lead">Copyright &copy; <?= date("Y") ?> FitStart</p>
-        </div>
-    </footer>
+    <div>
+        <footer class="bg-dark text-white text-center position-relative">
+            <div class="container">
+                <p class="lead">Copyright &copy; <?= date("Y") ?> FitStart</p>
+            </div>
+        </footer>
+    </div>
 </body>
     <?= HTML::script('html/scripts/helpers.js')?>
 </html>

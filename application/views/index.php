@@ -95,7 +95,7 @@
                                             <p>Would you like to create a workout to complete at home right now?</p>
                                             <div class="mx-5 d-flex">
                                                 <button class="centered add-button" id="start-workout-button">
-                                                    Start Workout</button>
+                                                    Create a Workout</button>
                                             </div>
                                            </div>`;
 

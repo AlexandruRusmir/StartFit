@@ -88,6 +88,12 @@
     right: 0;
     height: 100%;
     border: none;
+    transition: .2s ease-in-out;
+}
+
+.filter-button:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    background-color: rgb(255, 76, 76, 1);
 }
 
 .exercise-card {
@@ -97,6 +103,8 @@
 }
 
 .filter-categories {
+    z-index: 100;
+    background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -168,19 +176,20 @@
 
 .search-results {
     z-index: 99;
-    background-color: #F8F8F8;
     display: flex;
-    margin-top: 50px;
-    max-height: 200px;
+    max-height: 250px;
     overflow-y: auto;
     margin-bottom: 50px;
     margin-left: 5px;
     flex-direction: column;
+    min-width: 150px;
+    top: 100%;
+    box-shadow: 2px 6px 16px -4px rgb(0 0 0 / 50%);
 }
 
 .search-results div {
     z-index: 99;
-    background-color: #F8F8F8;
+    background-color: #FFFFFF;
     padding: 10px 50px;
 }
 

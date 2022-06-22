@@ -7,6 +7,11 @@ class Controller_Workouts extends Controller_UserStandard
         $this->template->main = View::factory('createWorkout');
     }
 
+    public function action_my_workouts()
+    {
+        $this->template->main = View::factory('myWorkouts');
+    }
+
     public function action_get_categories_list()
     {
         $categories = (new Model_Category())->find_all();
@@ -45,18 +50,124 @@ class Controller_Workouts extends Controller_UserStandard
         $this->response->body($matchingExercises);
     }
 
+    public function action_check_workout_name()
+    {
+        $workoutName = $this->request->post('name');
+
+        if (!$workoutName) {
+            $this->response->status(404);
+            $this->response->body('No workout name provided!');
+            return;
+        }
+
+        $userId = Auth::instance()->get_user();
+
+        if (!$userId) {
+            $this->response->body('[]');
+            return;
+        }
+
+        $workouts = ORM::factory('workout');
+        $workouts = $workouts->where('user_id', '=', "{$userId}");
+        $workouts = $workouts->find_all();
+
+        $workoutsResponse = [];
+        foreach ($workouts as $workout) {
+            if ($workout->name === $workoutName) {
+                $this->response->status(409);
+                $this->response->body('A workout with this name is already linked to this account!');
+                return;
+            }
+        }
+
+        $this->response->body('All good in the hood!');
+    }
+
     public function action_save_workout()
     {
-        $workoutExercises = json_decode($this->request->post('workoutExercises'));
+        $workoutDetails = json_decode($this->request->post('workout'));
 
-        if (!$workoutExercises) {
+        if (!isset($workoutDetails->workoutExercises)) {
             $this->response->body('Can not save a workout without exercises!');
             $this->response->status(400);
             return;
         }
 
+        if (!isset($workoutDetails->name)) {
+            $this->response->body('Can not save a workout without a name!');
+            $this->response->status(400);
+            return;
+        }
+
+        $workoutExercises = $workoutDetails->workoutExercises;
+        $response = $this->validatePayload($workoutExercises);
+        if ($response['success'] === false) {
+            $this->response->body(json_encode($response['errors']));
+            $this->response->status(400);
+            return;
+        }
+
+        $workout = new Model_Workout();
+        $this->saveWorkout($workout, $workoutDetails);
+
+        $this->response->body('Workout successfully added!');
+    }
+
+    public function action_get_workouts_by_keyword()
+    {
+        $keyword = $this->request->query('keyword');
 
 
+        $allAnimations = (new Model_Animation())->where('name', 'LIKE', "%{$keyword}%")->find_all();
+        $animationsArray = [];
+        foreach ($allAnimations as $animation) {
+            $animationsArray[] = $this->getAnimationObject($animation);
+        }
+        $animationJson = json_encode($animationsArray);
+
+        $this->response->body($animationJson);
+    }
+
+    private function saveWorkout(Model_Workout $workoutModel, $workoutDetails): void
+    {
+        $workoutExercises = $workoutDetails->workoutExercises;
+        $workoutModel->setUserID(Auth::instance()->get_user());
+        $workoutModel->setName($workoutDetails->name);
+        $workoutModel->save();
+
+        $k = 0;
+        foreach ($workoutExercises as $exercise) {
+            $k++;
+            $workoutExercise = new Model_WorkoutExercise();
+
+            if (!(new Model_Exercise($exercise->exerciseId))->loaded()) {
+                $responseArray['success'] = false;
+                $responseArray['errors'][] = "Exercise with id {$exercise->exerciseId} doesn't exist";
+            }
+            $workoutExercise->setExerciseID($exercise->exerciseId);
+            $workoutExercise->setWorkoutID($workoutModel->getID());
+            $workoutExercise->setExerciseOrder($k);
+
+            $workoutExercise->save();
+        }
+    }
+
+    private function validatePayload(array $workoutExercises): array
+    {
+        $responseArray = [
+            'success' => true,
+            'errors' => [
+            ]
+        ];
+
+        foreach ($workoutExercises as $exercise) {
+            if (!(new Model_Exercise($exercise->exerciseId))->loaded()) {
+                $responseArray['success'] = false;
+                $responseArray['errors'][] = "Exercise with id {$exercise->exerciseId} doesn't exist";
+            }
+        }
+
+        return $responseArray;
     }
 
     private function getExerciseObject(array $exercise): object

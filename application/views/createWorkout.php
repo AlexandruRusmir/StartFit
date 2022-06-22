@@ -2,49 +2,72 @@
 ?>
 
 <div class="container">
-    <h1>
-        Create your workout!
-    </h1>
+    <div id="workout-name-input">
+        <h1>Ready to create a new Workout?</h1>
+        <div class="form-container">
+            <div class="input-group">
+                <label>Provide new workout desired name:</label>
+                <input id='name-input' type="text" placeholder="Enter Workout Name" required autocomplete="off">
+            </div>
 
-    <div class="form-container">
-        <div class="input-group">
+            <div class="d-flex">
+                <button type="submit" id='submit-name-button' class="add-button">Confirm Name!</button>
+            </div>
 
-            <input id='input-search' type="text" placeholder="Search for exercises by name" required>
-            <button class="position-absolute px-3 filter-button" id="filter-button">Filter</button>
-            <div id="categories-boxes" class="py-2 filter-categories">
+            <div class="d-flex">
+                <p class="error-message" id="name-error-paragraph"></p>
+            </div>
+        </div>
+    </div>
 
+    <div id="exercise-selection">
+        <h1 id="page-title">
+        </h1>
+
+        <div class="form-container">
+            <div class="input-group">
+
+                <input id='input-search' type="text" placeholder="Search for exercises by name" required>
+                <button class="position-absolute px-3 filter-button" id="filter-button">Filter</button>
+                <div id="categories-boxes" class="py-2 filter-categories">
+
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <button type="submit" id='search-button' class="add-button">Start the Search</button>
             </div>
         </div>
 
         <div class="d-flex">
-            <button type="submit" id='search-button' class="add-button">Start the Search</button>
-        </div>
-    </div>
-
-    <div class="d-flex">
-        <p class="error-message" id="error-paragraph"></p>
-    </div>
-
-    <h5>Choose exercises for your workout:</h5>
-    <div class="row" id="exercises-list">
-
-    </div>
-
-    <div class="fixed-bottom bg-dark pt-1 px-2 text-white" id="selected-exercises-box">
-        <div class="centered-div">
-            <h3 class="text-white">Your workout(<label id="workout-duration"></label>):</h3>
+            <p class="error-message" id="error-paragraph"></p>
         </div>
 
-        <div class="row" id="selected-exercises"></div>
+        <div class="row" id="exercises-list">
 
-        <div class="d-flex">
-            <button id='save-workout-button' class="add-button">Save Workout!</button>
+        </div>
+
+        <div class="fixed-bottom bg-dark pt-1 px-2 text-white" id="selected-exercises-box">
+            <div class="centered-div">
+                <h3 class="text-white">Your workout(<label id="workout-duration"></label>):</h3>
+            </div>
+
+            <div class="row" id="selected-exercises"></div>
+
+            <div class="d-flex">
+                <button id='save-workout-button' class="add-button">Save Workout!</button>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
     const createWorkoutViewHandler = {
+        workoutNameDiv: $('workout-name-input'),
+        exerciseSelectionDiv: $('exercise-selection'),
+        confirmWorkoutNameButton: $('submit-name-button'),
+        workoutNameInput: $('name-input'),
+
         inputSearch: $('input-search'),
         categoriesBoxes: $('categories-boxes'),
         searchButton: $('search-button'),
@@ -175,7 +198,7 @@
                                     <div class="add-to-workout-overlay d-flex align-items-center">
                                         <div class="centered">
                                             <?= HTML::image('html/images/add.svg',
-                array('alt' => 'Add button', 'class' => 'add-button-overlay')); ?>
+                                                    array('alt' => 'Add button', 'class' => 'add-button-overlay')); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -201,7 +224,8 @@
                     breakTime: exerciseToBeAdded.breakTime
                 };
 
-                this.totalWorkoutTimeInSeconds += parseInt(exerciseToBeAdded.duration) + parseInt(exerciseToBeAdded.breakTime);
+                this.totalWorkoutTimeInSeconds +=
+                        parseInt(exerciseToBeAdded.duration) + parseInt(exerciseToBeAdded.breakTime);
                 this.selectedExercisesForWorkout.push(exercise);
                 this.updateSelectedExercisesDiv();
             });
@@ -249,11 +273,40 @@
             method: 'post',
             url: "<?= URL::site('workouts/save_workout') ?>",
             onSuccess: function (responseJSON, responseText) {
-                window.location.href = "";
+                window.location.href = "<?= URL::site('workouts/my_workouts') ?>";
             },
         }),
 
+        checkWorkoutNamesRequest: new Request({
+            method: 'post',
+            url: "<?= URL::site('workouts/check_workout_name') ?>",
+            onSuccess: function (responseJSON, responseText) {
+                createWorkoutViewHandler.workoutNameDiv.addClass('d-none');
+                createWorkoutViewHandler.exerciseSelectionDiv.removeClass('d-none');
+            },
+            onFailure: (xhr) => {
+                createWorkoutViewHandler.workoutNameInput.innerText = '';
+                if(xhr.status === 409) {
+                    $('name-error-paragraph').innerText = 'You already have a workout saved with this name!';
+                    return;
+                }
+                if(xhr.status === 404) {
+                    $('name-error-paragraph').innerText = 'No workout name provided!';
+                    return;
+                }
+            }
+        }),
+
         init: function () {
+            this.exerciseSelectionDiv.addClass('d-none');
+            this.confirmWorkoutNameButton.addEvent('click', () => {
+                let workoutName = this.workoutNameInput.value;
+                this.checkWorkoutNamesRequest.send({
+                    data: {'name': workoutName}
+                });
+                $('page-title').innerText = `Select exercises for: ${workoutName}`;
+            });
+
             createWorkoutViewHandler.categoriesListRequest.send();
 
             createWorkoutViewHandler.searchButton.addEvent('click',
@@ -265,10 +318,15 @@
                this.categoriesBoxes.toggleClass('d-none');
             });
 
+
             this.saveWorkoutButton.addEvent('click', () => {
-                const exercisesJson = JSON.stringify(this.selectedExercisesForWorkout);
+                let workoutDetails = {
+                    'name': this.workoutNameInput.value,
+                    'workoutExercises': this.selectedExercisesForWorkout
+                }
+                const workoutDetailsJson = JSON.stringify(workoutDetails);
                 this.saveWorkoutRequest.send({
-                    data: {'workoutExercises': exercisesJson}
+                    data: {'workout': workoutDetailsJson}
                 })
             });
         }

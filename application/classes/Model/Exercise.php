@@ -6,7 +6,7 @@ class Model_Exercise extends ORM
         'categories' => [
             'model' => 'category',
             'through' => 'categories_exercises'
-        ]
+        ],
     ];
 
     public function getID(): int

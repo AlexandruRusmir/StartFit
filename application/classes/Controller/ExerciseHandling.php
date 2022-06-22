@@ -54,9 +54,7 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         }
 
         $categories = ORM::factory('category');
-        if ($keyword) {
-            $categories = $categories->where('name', 'LIKE', "%{$keyword}%");
-        }
+        $categories = $categories->where('name', 'LIKE', "%{$keyword}%");
 
         $categories = $categories->find_all();
 
@@ -262,22 +260,19 @@ class Controller_ExerciseHandling extends Controller_AdminStandard
         $animationModel->save();
     }
 
-    private function saveExercise(Model_Exercise $exerciseModel, $exercise)
+    private function saveExercise(Model_Exercise $exerciseModel, $exercise): void
     {
-
         $exerciseModel->setName($exercise->name);
         $exerciseModel->setAnimationID($exercise->animationID);
         $exerciseModel->setDefaultDuration($exercise->duration);
         $exerciseModel->setDefaultBreakTime($exercise->breakTime);
         $exerciseModel->save();
 
-        foreach ($exerciseModel->categories->find_all() as $category)
-        {
+        foreach ($exerciseModel->categories->find_all() as $category) {
             $exerciseModel->remove('categories', $category);
         }
 
         foreach ($exercise->categories as $category) {
-
             $exerciseModel->add('categories', ORM::factory('category', $category->id));
         }
     }
