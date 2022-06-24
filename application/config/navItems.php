@@ -6,10 +6,6 @@ return [
             'name' => 'Home',
             'url' => URL::site('index/index')
         ],
-        'workouts' => [
-            'name' => 'My Workouts',
-            'url' => URL::site('workouts/my_workouts')
-        ],
         'login' => [
             'name' => 'Login',
             'url' => URL::site('register/index')
@@ -18,6 +14,13 @@ return [
             'name' => 'Logout',
             'url' => URL::site('register/logout')
         ]
+    ],
+
+    'userItems' => [
+        'workouts' => [
+            'name' => 'My Workouts',
+            'url' => URL::site('workouts/my_workouts')
+        ],
     ],
 
     'adminItems' => [

@@ -11,10 +11,4 @@ class Controller_UserStandard extends Controller_Standard
 
         parent::before();
     }
-
-    public function action_index()
-    {
-
-    }
-
 }

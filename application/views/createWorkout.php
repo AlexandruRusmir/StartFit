@@ -133,7 +133,8 @@
 
             this.exercisesListDiv.style.marginBottom = this.selectedExercisesBox.clientHeight + "px";
 
-            this.workoutDuration.innerText = parseInt(this.totalWorkoutTimeInSeconds / 60) + 'mins and ' +  parseInt(this.totalWorkoutTimeInSeconds % 60) + ' seconds';
+            this.workoutDuration.innerText = parseInt(this.totalWorkoutTimeInSeconds / 60) + 'mins and ' +
+                    parseInt(this.totalWorkoutTimeInSeconds % 60) + ' seconds';
             this.selectedExercisesForWorkout.forEach(exercise => {
                 let selectedExerciseHTML = this.returnHTMLStringForSelectedExercise(exercise);
                 let selectedExerciseElement = createElementFromHTML(selectedExerciseHTML);
@@ -280,7 +281,7 @@
         checkWorkoutNamesRequest: new Request({
             method: 'post',
             url: "<?= URL::site('workouts/check_workout_name') ?>",
-            onSuccess: function (responseJSON, responseText) {
+            onSuccess: function () {
                 createWorkoutViewHandler.workoutNameDiv.addClass('d-none');
                 createWorkoutViewHandler.exerciseSelectionDiv.removeClass('d-none');
             },

@@ -13,10 +13,10 @@ class Controller_Standard extends Controller_Template
 
         parent::before();
 
-        $this->getNavBarItemsForCurrentUser('user');
+        $this->getNavBarItemsForCurrentUser();
 
         $this->template->header = View::factory('header',
-            ['navBarElements' => $this->getNavBarItemsForCurrentUser()]);
+                ['navBarElements' => $this->getNavBarItemsForCurrentUser()]);
     }
 
     private function getNavBarItemsForCurrentUser(): array
@@ -26,8 +26,9 @@ class Controller_Standard extends Controller_Template
         if (Auth::instance()->logged_in('super_admin')) {
             $adminNavItemsConfig = Kohana::$config->load('navItems')->adminItems;
             $superAdminNavItemsConfig = Kohana::$config->load('navItems')->superAdminItems;
+            $userNavItemsConfig = Kohana::$config->load('navItems')->userItems;
 
-            $allNavItems = array_merge($superAdminNavItemsConfig, $adminNavItemsConfig, $navItemsConfig);
+            $allNavItems = array_merge($superAdminNavItemsConfig, $adminNavItemsConfig, $userNavItemsConfig, $navItemsConfig);
             unset($allNavItems['login']);
 
             return $allNavItems;
@@ -35,17 +36,21 @@ class Controller_Standard extends Controller_Template
 
         if (Auth::instance()->logged_in('admin')) {
             $adminNavItemsConfig = Kohana::$config->load('navItems')->adminItems;
+            $userNavItemsConfig = Kohana::$config->load('navItems')->userItems;
 
-            $allNavItems = array_merge($adminNavItemsConfig, $navItemsConfig);
+            $allNavItems = array_merge($adminNavItemsConfig, $userNavItemsConfig, $navItemsConfig);
             unset($allNavItems['login']);
 
             return $allNavItems;
         }
 
         if (Auth::instance()->logged_in('login')) {
-            unset($navItemsConfig['login']);
+            $userNavItemsConfig = Kohana::$config->load('navItems')->userItems;
 
-            return $navItemsConfig;
+            $allNavItems = array_merge($userNavItemsConfig, $navItemsConfig);
+            unset($allNavItems['login']);
+
+            return $allNavItems;
         }
 
         unset($navItemsConfig['logout']);

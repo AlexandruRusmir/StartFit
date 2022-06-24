@@ -31,6 +31,10 @@ nav .navbar-nav li .logout{
     color: #d04a4a !important;
 }
 
+nav .navbar-nav li .logout:hover{
+    color: #9b2f2f !important;
+}
+
 nav .navbar-nav li .login{
     color: #4bd34b !important;
 }

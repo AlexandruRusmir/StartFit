@@ -90,7 +90,7 @@
         },
 
         exerciseRemove: function (event) {
-            toBeDeletedExercise = event.target.result;
+            let toBeDeletedExercise = event.target.result;
 
             for (let i = 0; i < this.allExercises.length; i++) {
                 if (this.allExercises[i].id == toBeDeletedExercise.id) {
@@ -98,7 +98,7 @@
                 }
             }
 
-            this.updateAllExercisesList
+            this.updateAllExercisesList();
         },
 
 

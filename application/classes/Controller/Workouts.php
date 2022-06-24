@@ -12,6 +12,13 @@ class Controller_Workouts extends Controller_UserStandard
         $this->template->main = View::factory('myWorkouts');
     }
 
+    public function action_workout_page()
+    {
+        $id = $this->request->param('id');
+
+        $this->template->main = View::factory('workoutPage', ['receivedID' => $id]);
+    }
+
     public function action_get_categories_list()
     {
         $categories = (new Model_Category())->find_all();
@@ -115,17 +122,49 @@ class Controller_Workouts extends Controller_UserStandard
 
     public function action_get_workouts_by_keyword()
     {
-        $keyword = $this->request->query('keyword');
+        $keyword = $this->request->post('keyword');
 
+        $userId = Auth::instance()->get_user();
+        $allWorkouts = (new Model_Workout())->where('user_id', '=', "{$userId}")
+            ->and_where('name', 'LIKE', "%{$keyword}%")->find_all();
 
-        $allAnimations = (new Model_Animation())->where('name', 'LIKE', "%{$keyword}%")->find_all();
-        $animationsArray = [];
-        foreach ($allAnimations as $animation) {
-            $animationsArray[] = $this->getAnimationObject($animation);
+        $workoutsArray = [];
+        foreach ($allWorkouts as $workout) {
+            $workoutsArray[] = $this->getWorkoutObject($workout);
         }
-        $animationJson = json_encode($animationsArray);
+        $workoutsJson = json_encode($workoutsArray);
 
-        $this->response->body($animationJson);
+        $this->response->body($workoutsJson);
+    }
+
+    public function action_delete_workout_by_id()
+    {
+        $workoutToBeDeletedId = $this->request->post('id');
+
+        $workout = ORM::factory('workout', $workoutToBeDeletedId);
+        if (!$workout->loaded()) {
+            $this->response->body('No workout with this id exists!');
+            return;
+        }
+        $workout->delete();
+
+        $this->response->body('Workout successfully deleted!');
+    }
+
+    public function action_get_workout_details()
+    {
+        $workoutId = $this->request->post('id');
+
+        $workout = new Model_Workout($workoutId);
+        if (!$workout->loaded() || $workout->getUserID() != Auth::instance()->get_user()->id) {
+            $this->response->status(404);
+            $this->response->body('No workout with this ID registered for this account!');
+            return;
+        }
+
+        $workoutDetails = json_encode($this->getWorkoutObject($workout));
+
+        $this->response->body($workoutDetails);
     }
 
     private function saveWorkout(Model_Workout $workoutModel, $workoutDetails): void
@@ -140,10 +179,6 @@ class Controller_Workouts extends Controller_UserStandard
             $k++;
             $workoutExercise = new Model_WorkoutExercise();
 
-            if (!(new Model_Exercise($exercise->exerciseId))->loaded()) {
-                $responseArray['success'] = false;
-                $responseArray['errors'][] = "Exercise with id {$exercise->exerciseId} doesn't exist";
-            }
             $workoutExercise->setExerciseID($exercise->exerciseId);
             $workoutExercise->setWorkoutID($workoutModel->getID());
             $workoutExercise->setExerciseOrder($k);
@@ -156,8 +191,7 @@ class Controller_Workouts extends Controller_UserStandard
     {
         $responseArray = [
             'success' => true,
-            'errors' => [
-            ]
+            'errors' => []
         ];
 
         foreach ($workoutExercises as $exercise) {
@@ -168,6 +202,35 @@ class Controller_Workouts extends Controller_UserStandard
         }
 
         return $responseArray;
+    }
+
+    private function getWorkoutObject(Model_Workout $workout): object
+    {
+        $workoutObject = (object)[];
+        $workoutId = $workout->id;
+        $workoutObject->id = $workoutId;
+        $workoutObject->name = $workout->name;
+
+        $exercisesArray = [];
+        $workoutExercises = (new Model_WorkoutExercise())->where('workout_id', '=', "{$workoutId}")->
+            order_by('order')->find_all();
+
+        foreach ($workoutExercises as $workoutExercise) {
+            $exercise = new Model_Exercise($workoutExercise->exercise_id);
+            if ($exercise->loaded()) {
+                $exerciseObject = (object)[];
+                $exerciseObject->name = $exercise->getName();
+                $exerciseObject->gifUrl = (new Model_Animation($exercise->getAnimationID()))->getURL();
+                $exerciseObject->duration = $exercise->getDefaultDuration();
+                $exerciseObject->breakTime = $exercise->getDefaultBreakTime();
+
+                $exercisesArray[] = $exerciseObject;
+            }
+        }
+
+        $workoutObject->exercisesArray = $exercisesArray;
+
+        return $workoutObject;
     }
 
     private function getExerciseObject(array $exercise): object
