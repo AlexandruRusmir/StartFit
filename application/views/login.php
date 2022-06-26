@@ -14,10 +14,11 @@ $message = $message ?? '';
             <input type="password" id="password" name="password" placeholder="Password" required/>
         </div>
 
+        <p class="error-message mb-5"><?= $message ?></p>
+
         <div class="d-flex py-2">
             <input type="submit" name='submit' class="submit-btn"/>
         </div>
-        <?= $message; ?>
 
         <div class="d-flex">
             <p class="login-register-text">Don't have an account?

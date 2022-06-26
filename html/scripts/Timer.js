@@ -1,23 +1,24 @@
 class Timer {
-    constructor(root, durationInSeconds, endCallback, playButtonContent, pauseButtonContent, resetButtonContent,
-                skipButtonContent) {
-        root.innerHTML = Timer.getHTML();
+    constructor(targetedElement, durationInSeconds, endCallback, playButtonContent, pauseButtonContent,
+                resetButtonContent, skipButtonContent, ) {
 
-        this.el = {
-            progress: root.querySelector('.progress'),
-            control: root.querySelector('.timer__btn--control'),
-            reset: root.querySelector('.timer__btn--reset'),
-            skip: root.querySelector('.timer__btn--skip'),
+        targetedElement.innerHTML = Timer.getHTML();
+
+        this.controls = {
+            progress: targetedElement.querySelector('.progress'),
+            control: targetedElement.querySelector('#timer-control'),
+            reset: targetedElement.querySelector('#timer-reset'),
+            skip: targetedElement.querySelector('#timer-skip'),
         };
 
-        this.el.control.innerHTML = playButtonContent;
+        this.controls.control.innerHTML = playButtonContent;
         this.playButtonContent = playButtonContent;
         this.pauseButtonContent = pauseButtonContent;
 
-        this.el.reset.innerHTML = resetButtonContent;
+        this.controls.reset.innerHTML = resetButtonContent;
         this.resetButtonContent = resetButtonContent;
 
-        this.el.skip.innerHTML = skipButtonContent;
+        this.controls.skip.innerHTML = skipButtonContent;
         this.skipButtonContent = skipButtonContent;
 
         this.interval = null;
@@ -26,53 +27,58 @@ class Timer {
         this.oneSecondPercentage = 100 / this.totalDurationInSeconds;
         this.currentPercentage = 0;
 
-        this.endCallback = endCallback;
+        this.endCallback = () => {
+            this.beep(100,800,300);
+            endCallback();
+        }
 
-        this.el.control.addEvent('click', () => {
+        this.controls.control.addEvent('click', () => {
             if (this.interval === null) {
                 this.start();
-            } else {
+            }
+            else {
                 this.stop();
             }
         });
 
-        this.el.reset.addEvent('click', () => {
+        this.controls.reset.addEvent('click', () => {
             this.remainingSeconds = this.totalDurationInSeconds;
             this.currentPercentage = 0;
             this.updateInterfaceTime();
             this.stop();
         });
 
-        this.el.skip.addEvent('click', () => {
+        this.controls.skip.addEvent('click', () => {
             this.remainingSeconds = 0;
             this.currentPercentage = 100;
             this.updateInterfaceTime();
 
-            if(this.interval === null) {
+            if (this.interval === null) {
                 this.endCallback();
             }
         });
     }
 
     updateInterfaceTime() {
-        this.el.progress.innerHTML='';
+        this.controls.progress.innerHTML = '';
         let htmlString = `<div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
                           role="progressbar" aria-valuenow="${this.currentPercentage}" aria-valuemin="0" aria-valuemax="100"
                           style="width: ${this.currentPercentage}%"></div>
                        </div>`;
         let docElement = createElementFromHTML(htmlString);
-        this.el.progress.appendChild(docElement);
+        this.controls.progress.appendChild(docElement);
     }
 
     updateInterfaceControls() {
         if (this.interval === null) {
-            this.el.control.innerHTML = this.playButtonContent;
-            this.el.control.classList.add("timer__btn--start");
-            this.el.control.classList.remove("timer__btn--stop");
-        } else {
-            this.el.control.innerHTML = this.pauseButtonContent;
-            this.el.control.classList.add("timer__btn--stop");
-            this.el.control.classList.remove("timer__btn--start");
+            this.controls.control.innerHTML = this.playButtonContent;
+            this.controls.control.addClass("timer-start");
+            this.controls.control.removeClass("timer-stop");
+        }
+        else {
+            this.controls.control.innerHTML = this.pauseButtonContent;
+            this.controls.control.addClass("timer-stop");
+            this.controls.control.removeClass("timer-start");
         }
     }
 
@@ -85,6 +91,9 @@ class Timer {
         this.interval = setInterval(() => {
             this.remainingSeconds--;
             this.currentPercentage += this.oneSecondPercentage;
+            if ([1, 2, 3].include(this.remainingSeconds)) {
+                this.beep(20,690,80);
+            }
             this.updateInterfaceTime();
 
             if (this.remainingSeconds <= 0) {
@@ -98,7 +107,6 @@ class Timer {
 
     stop() {
         clearInterval(this.interval);
-
         this.interval = null;
 
         this.updateInterfaceControls();
@@ -107,12 +115,28 @@ class Timer {
     static getHTML() {
         return `
 			<div class="progress-line progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated bg-success w-0" 
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-info w-0" 
                 role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-			<button type="button" class="timer-btn timer__btn--control timer__btn--start"></button>
-			<button type="button" class="timer-btn timer__btn--reset"></button>
-			<button type="button" class="timer-btn timer__btn--skip"></button>
+            <div>
+                <button type="button" class="timer-button" id="timer-control"></button>
+                <button type="button" class="timer-button" id="timer-reset"></button>
+                <button type="button" class="timer-button" id="timer-skip"></button>
+            </div>
 		`;
+    }
+
+    beep(vol, freq, duration){
+        const audioContext=new AudioContext();
+
+        let v = audioContext.createOscillator()
+        let u = audioContext.createGain()
+        v.connect(u)
+        v.frequency.value=freq
+        v.type="square"
+        u.connect(audioContext.destination)
+        u.gain.value = vol*0.01
+        v.start(audioContext.currentTime)
+        v.stop(audioContext.currentTime+duration*0.001)
     }
 }
