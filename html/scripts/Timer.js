@@ -1,6 +1,6 @@
 class Timer {
     constructor(targetedElement, durationInSeconds, endCallback, playButtonContent, pauseButtonContent,
-                resetButtonContent, skipButtonContent, ) {
+                resetButtonContent, skipButtonContent) {
 
         targetedElement.innerHTML = Timer.getHTML();
 
@@ -16,10 +16,8 @@ class Timer {
         this.pauseButtonContent = pauseButtonContent;
 
         this.controls.reset.innerHTML = resetButtonContent;
-        this.resetButtonContent = resetButtonContent;
 
         this.controls.skip.innerHTML = skipButtonContent;
-        this.skipButtonContent = skipButtonContent;
 
         this.interval = null;
         this.remainingSeconds = durationInSeconds;
@@ -28,15 +26,14 @@ class Timer {
         this.currentPercentage = 0;
 
         this.endCallback = () => {
-            this.beep(100,800,300);
+            this.beep(100, 800, 300);
             endCallback();
         }
 
         this.controls.control.addEvent('click', () => {
             if (this.interval === null) {
                 this.start();
-            }
-            else {
+            } else {
                 this.stop();
             }
         });
@@ -74,8 +71,7 @@ class Timer {
             this.controls.control.innerHTML = this.playButtonContent;
             this.controls.control.addClass("timer-start");
             this.controls.control.removeClass("timer-stop");
-        }
-        else {
+        } else {
             this.controls.control.innerHTML = this.pauseButtonContent;
             this.controls.control.addClass("timer-stop");
             this.controls.control.removeClass("timer-start");
@@ -91,8 +87,8 @@ class Timer {
         this.interval = setInterval(() => {
             this.remainingSeconds--;
             this.currentPercentage += this.oneSecondPercentage;
-            if ([1, 2, 3].include(this.remainingSeconds)) {
-                this.beep(20,690,80);
+            if (this.remainingSeconds === 3 || this.remainingSeconds === 2 || this.remainingSeconds === 1) {
+                this.beep(20, 690, 80);
             }
             this.updateInterfaceTime();
 
@@ -126,17 +122,17 @@ class Timer {
 		`;
     }
 
-    beep(vol, freq, duration){
-        const audioContext=new AudioContext();
+    beep(vol, freq, duration) {
+        const audioContext = new AudioContext();
 
         let v = audioContext.createOscillator()
         let u = audioContext.createGain()
         v.connect(u)
-        v.frequency.value=freq
-        v.type="square"
+        v.frequency.value = freq
+        v.type = "square"
         u.connect(audioContext.destination)
-        u.gain.value = vol*0.01
+        u.gain.value = vol * 0.01
         v.start(audioContext.currentTime)
-        v.stop(audioContext.currentTime+duration*0.001)
+        v.stop(audioContext.currentTime + duration * 0.001)
     }
 }

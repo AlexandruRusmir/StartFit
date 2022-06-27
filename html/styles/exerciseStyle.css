@@ -49,6 +49,10 @@
     background: #fc2323;
 }
 
+.add-button:focus {
+    outline: none;
+}
+
 .start-button {
     background-color: #6ce26c;
     border: none;
