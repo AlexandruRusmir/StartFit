@@ -127,8 +127,10 @@ $receivedID = $receivedID ?? 0;
             let workoutOrder = workoutViewHandler.workoutExerciseOrder;
             let pauseExecuted = workoutViewHandler.workoutPauseExecuted;
 
+            let currentExercise = $(`workout-exercise-${workoutOrder}`);
             if (workoutOrder === workoutViewHandler.workoutExercises.length - 1) {
-                $(`workout-exercise-${workoutOrder}`).addClass('workout-passed-exercise');
+                currentExercise.addClass('workout-passed-exercise');
+                currentExercise.removeClass('workout-current-exercise');
 
                 workoutViewHandler.mainDisplay.innerHTML = '';
 
@@ -156,8 +158,8 @@ $receivedID = $receivedID ?? 0;
                 return;
             }
 
-            $(`workout-exercise-${workoutOrder}`).addClass('workout-passed-exercise');
-            $(`workout-exercise-${workoutOrder}`).removeClass('workout-current-exercise');
+            currentExercise.addClass('workout-passed-exercise');
+            currentExercise.removeClass('workout-current-exercise');
             workoutViewHandler.workoutPauseExecuted = false;
 
             workoutViewHandler.workoutExerciseOrder++;

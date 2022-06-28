@@ -48,8 +48,23 @@
         </div>
 
         <div class="fixed-bottom bg-dark pt-1 px-2 text-white" id="selected-exercises-box">
-            <div class="centered-div">
-                <h3 class="text-white">Your workout(<label id="workout-duration"></label>):</h3>
+            <div class="row py-3">
+                <div class="col-12 col-md-10">
+                    <div class="px-3">
+                        <h3 class="text-white">Workout duration: <label id="workout-duration"></label>:</h3>
+                    </div>
+                </div>
+                <div class="col-12 col-md-2 d-flex">
+                    <div class="btn-group-toggle d-flex flex-column px-3 centered-div w-100" data-toggle="buttons">
+                        <h6>Reorder exercises</h6>
+                        <div class="centered-div">
+                            <label class="switch">
+                                <input type="checkbox" id="reorder-checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row" id="selected-exercises"></div>
@@ -82,15 +97,18 @@
         workoutDuration: $('workout-duration'),
         totalWorkoutTimeInSeconds: 0,
 
+        reorderCheckbox: $('reorder-checkbox'),
+        reorderToggle: false,
+
         saveWorkoutButton: $('save-workout-button'),
 
         addClickEventToExerciseRemoveOverlay: function () {
-            $$('.remove-from-workout-overlay').addEvent('click', (event) => {
+            $$('.remove-button-overlay').addEvent('click', (event) => {
                 let exerciseToBeRemoved = event.target.result;
                 this.selectedExercisesForWorkout.splice(exerciseToBeRemoved.workoutOrder - 1, 1);
                 this.totalWorkoutTimeInSeconds -= parseInt(exerciseToBeRemoved.duration) + parseInt(exerciseToBeRemoved.breakTime);
 
-                for (let i = exerciseToBeRemoved.workoutOrder - 1; i<this.selectedExercisesForWorkout.length; i++) {
+                for (let i = exerciseToBeRemoved.workoutOrder - 1; i < this.selectedExercisesForWorkout.length; i++) {
                     this.selectedExercisesForWorkout[i].workoutOrder -= 1;
                 }
 
@@ -99,7 +117,7 @@
         },
 
         returnHTMLStringForSelectedExercise: function (exercise) {
-            exerciseHTML = `<div class="col-4 col-sm-3 col-md-2">
+            exerciseHTML = `<div class="col-4 col-sm-3 col-md-2" id='exercise-${exercise.workoutOrder}'>
                                 <div class="centered exercise-card position-relative d-flex flex-column">
                                     <div class="h-40 centered-div exercise-card-text">
                                         <p class="centered">Place: ${exercise.workoutOrder}</p>
@@ -121,7 +139,29 @@
             return exerciseHTML;
         },
 
-        updateSelectedExercisesDiv: function () {
+        updateSortablesList: function () {
+            let sortables = new Sortables(this.selectedExercisesDiv, {
+                clone: true,
+                opacity: 0.6,
+                onComplete: () => {
+                    this.selectedExercisesForWorkout.empty();
+                    let k = 0;
+                    sortables.serialize().forEach(exerciseId => {
+                        let exercise = $(`${exerciseId}`).result;
+                        exercise.workoutOrder = ++k;
+                        this.selectedExercisesForWorkout.push(exercise);
+                    });
+
+                    this.selectedExercisesDiv.innerHTML = '';
+                    this.updateSelectedExercisesDiv(false);
+                }
+            });
+            if (!this.reorderToggle) {
+                sortables.detach();
+            }
+        },
+
+        updateSelectedExercisesDiv: function (updateSortables = true) {
             if (!this.selectedExercisesForWorkout.length) {
                 this.selectedExercisesBox.addClass('d-none');
                 this.exercisesListDiv.style.marginBottom = "3rem";
@@ -134,18 +174,33 @@
             this.exercisesListDiv.style.marginBottom = this.selectedExercisesBox.clientHeight + "px";
 
             this.workoutDuration.innerText = parseInt(this.totalWorkoutTimeInSeconds / 60) + 'mins and ' +
-                    parseInt(this.totalWorkoutTimeInSeconds % 60) + ' seconds';
+                parseInt(this.totalWorkoutTimeInSeconds % 60) + ' seconds';
             this.selectedExercisesForWorkout.forEach(exercise => {
                 let selectedExerciseHTML = this.returnHTMLStringForSelectedExercise(exercise);
                 let selectedExerciseElement = createElementFromHTML(selectedExerciseHTML);
 
-                selectedExerciseElement.querySelector('.remove-from-workout-overlay').result = exercise;
+                selectedExerciseElement.firstChild.parentElement.result = exercise;
                 selectedExerciseElement.querySelector('.remove-button-overlay').result = exercise;
 
                 this.selectedExercisesDiv.appendChild(selectedExerciseElement);
             });
 
             this.addClickEventToExerciseRemoveOverlay();
+
+            if (!this.reorderToggle) {
+                $$('.remove-button-overlay').removeClass('d-none');
+            }
+            else {
+                $$('.remove-button-overlay').addClass('d-none');
+                this.updateSortablesList();
+            }
+
+
+            if (!updateSortables) {
+                return;
+            }
+
+            this.updateSortablesList();
         },
 
         handleCategoryClick: function (event) {
@@ -199,7 +254,7 @@
                                     <div class="add-to-workout-overlay d-flex align-items-center">
                                         <div class="centered">
                                             <?= HTML::image('html/images/add.svg',
-                                                    array('alt' => 'Add button', 'class' => 'add-button-overlay')); ?>
+                array('alt' => 'Add button', 'class' => 'add-button-overlay')); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +281,7 @@
                 };
 
                 this.totalWorkoutTimeInSeconds +=
-                        parseInt(exerciseToBeAdded.duration) + parseInt(exerciseToBeAdded.breakTime);
+                    parseInt(exerciseToBeAdded.duration) + parseInt(exerciseToBeAdded.breakTime);
                 this.selectedExercisesForWorkout.push(exercise);
                 this.updateSelectedExercisesDiv();
             });
@@ -270,12 +325,16 @@
             });
         },
 
-        saveWorkoutRequest: new Request.JSON({
+        saveWorkoutRequest: new Request({
             method: 'post',
             url: "<?= URL::site('workouts/save_workout') ?>",
-            onSuccess: function (responseJSON, responseText) {
+            onSuccess: function () {
+                console.log(1)
                 window.location.href = "<?= URL::site('workouts/my_workouts') ?>";
             },
+            onComplete: () => {
+                console.log(1)
+            }
         }),
 
         checkWorkoutNamesRequest: new Request({
@@ -287,11 +346,11 @@
             },
             onFailure: (xhr) => {
                 createWorkoutViewHandler.workoutNameInput.innerText = '';
-                if(xhr.status === 409) {
+                if (xhr.status === 409) {
                     $('name-error-paragraph').innerText = 'You already have a workout saved with this name!';
                     return;
                 }
-                if(xhr.status === 404) {
+                if (xhr.status === 404) {
                     $('name-error-paragraph').innerText = 'No workout name provided!';
                     return;
                 }
@@ -316,9 +375,8 @@
             this.selectedExercisesBox.addClass('d-none');
             this.categoriesBoxes.addClass('d-none');
             this.filterButton.addEvent('click', () => {
-               this.categoriesBoxes.toggleClass('d-none');
+                this.categoriesBoxes.toggleClass('d-none');
             });
-
 
             this.saveWorkoutButton.addEvent('click', () => {
                 let workoutDetails = {
@@ -327,8 +385,19 @@
                 }
                 const workoutDetailsJson = JSON.stringify(workoutDetails);
                 this.saveWorkoutRequest.send({
-                    data: {'workout': workoutDetailsJson}
+                    data: {'workout': workoutDetailsJson},
                 })
+            });
+
+            this.reorderCheckbox.addEvent('click', () => {
+                if (this.reorderCheckbox.checked) {
+                    this.reorderToggle = true;
+                    this.updateSelectedExercisesDiv();
+                    return;
+                }
+
+                this.reorderToggle = false;
+                this.updateSelectedExercisesDiv();
             });
         }
     };

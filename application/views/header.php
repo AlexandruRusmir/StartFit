@@ -46,7 +46,6 @@
 
         navbarNavButton.addEvent('click', () => {
             const navElem = $('navbarNavDropdown');
-            console.log(navElem);
 
             navElem.toggleClass('show');
         })

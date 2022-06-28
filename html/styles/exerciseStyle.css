@@ -95,7 +95,6 @@
 .exercise-box {
     padding: 1rem;
     background-color: #F8F8F8;
-    text-align: center;
 }
 
 .error-message {
@@ -116,6 +115,10 @@
 .filter-button:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2);
     background-color: rgb(255, 76, 76, 1);
+}
+
+.filter-button:focus {
+    outline: none;
 }
 
 .exercise-card {
@@ -147,8 +150,7 @@
 }
 
 .exercise-card-animation {
-    height: 100px;
-    width: auto;
+    width: 100%;
 }
 
 .add-to-workout-overlay {

@@ -163,6 +163,13 @@
     };
 
     window.addEvent('domready', function () {
+        var mySort = new Sortables($('SortableExample'), {
+            clone: true,
+            opacity: 0.6,
+            onComplete: function(){
+                console.log(mySort.serialize())
+            }
+        });
         workoutsViewHandler.init();
     });
 </script>

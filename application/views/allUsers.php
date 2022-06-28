@@ -63,11 +63,19 @@
 
 
             removeAdminButtons.addEvent('click', function () {
+                if (!confirm("Are you sure you want to remove admin role from this user?")) {
+                    return;
+                }
+
                 this.addClass('disabled');
                 usersViewHandler.removeAdminRole(this).send();
             });
 
             addAdminButtons.addEvent('click', function () {
+                if (!confirm("Are you sure you want to add admin role to this user?")) {
+                    return;
+                }
+
                 this.addClass('disabled');
                 usersViewHandler.addAdminRole(this).send();
             });
@@ -76,7 +84,6 @@
         userListRequest: new Request.HTML({
             update: $('users-list'),
             onSuccess: function (response) {
-                console.log(this);
                 usersViewHandler.onSuccessUserListRequest(response);
             },
         }),
