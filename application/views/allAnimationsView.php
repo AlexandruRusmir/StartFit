@@ -15,7 +15,7 @@
     </div>
 
 
-    <div id="animations-list">
+    <div id="animations-list" class="mb-5">
 
     </div>
 </div>
@@ -49,7 +49,7 @@
         }),
 
         returnHTMLStringForAnimation: function (animation) {
-            animationHTML = `<div class='row exercise-box'>
+            animationHTML = `<div class='row exercise-box my-3'>
                                     <div class="col-3 exercise-card-animation">
                                         <img src="${animation.gifURL}" width="200" height="auto"/>
                                     </div>

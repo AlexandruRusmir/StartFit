@@ -16,7 +16,7 @@
     </div>
 
 
-    <div id="exercises-list">
+    <div id="exercises-list" class="mb-5">
 
     </div>
 </div>
@@ -38,32 +38,35 @@
         }),
 
         returnHTMLStringForExercise: function (exercise) {
-            exerciseHTML = `<div class='row exercise-box'>
+            exerciseHTML = `<div class='row exercise-box my-3'>
                                     <div class="col-3">
-                                        <img src="${exercise.gifURL}" width="200" height="auto"></img>
+                                        <img src="${exercise.gifURL}" class="workout-exercise-picture"></img>
                                     </div>
 
                                     <div class="col-2">
                                         <div class="centered-div">
-                                            ${exercise.name}
+                                            <b>${exercise.name}</b>
                                         </div>
                                     </div>
 
                                     <div class="col-1">
                                         <div class="centered-div">
-                                            ${exercise.defaultDuration}
+                                            Duration:
+                                            ${exercise.defaultDuration}s
                                         </div class="centered-div">
                                     </div>
 
                                     <div class="col-1">
                                         <div class="centered-div">
-                                            ${exercise.defaultBreakTime}
+                                            Break:
+                                            ${exercise.defaultBreakTime}s
                                         </div>
                                     </div>
 
                                     <div class="col-2">
                                         <div class="centered-div">
-                                            <div>`;
+                                            <div>
+                                                <b>Categories:</b>`;
                     exercise.categories.forEach((category) => {
                         exerciseHTML += `
                                                 <div>

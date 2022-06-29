@@ -21,8 +21,16 @@ class Controller_Register extends Controller_Standard
         $password = $this->request->post('password');
         $confirmPassword = $this->request->post('confirmPassword');
 
-        if (md5($password) != md5($confirmPassword))
+        if (strlen($userName) < 3) {
+            $this->template->main = View::factory('register', ['message' => 'Please provide a username of at least
+            three characters!']);
+            return;
+        }
+
+        if (md5($password) != md5($confirmPassword)) {
             $this->template->main = View::factory('register', ['message' => 'Password is not the same as confirmed password.']);
+            return;
+        }
 
 
         $userModel = new Model_User();
@@ -52,6 +60,11 @@ class Controller_Register extends Controller_Standard
             $success = Auth::instance()->login($userName, $password, true);
         } catch (Exception $e) {
             print_r($e->getMessage());
+        }
+
+        if (!$success) {
+            $this->template->main = View::factory('login', ['message' => 'Failed to login! Check username or password.']);
+            return;
         }
 
         Controller::redirect('index/index');

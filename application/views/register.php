@@ -21,7 +21,7 @@ $message = $message ?? '';
             <input type="password" name="confirmPassword" placeholder="Confirm Password" required/>
         </div>
 
-        <?= $message; ?>
+        <p class="error-message mb-4"> <?= $message; ?> </p>
         <div class="d-flex py-2">
             <input type="submit" name='submit' class="submit-btn"/>
         </div>

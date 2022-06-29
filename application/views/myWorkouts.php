@@ -19,7 +19,7 @@
     </div>
 
 
-    <div id="workouts-list">
+    <div id="workouts-list" class="mb-5">
     </div>
 </div>
 
@@ -57,7 +57,7 @@
             let workoutTime = parseInt(totalWorkoutTimeInSeconds / 60) + " minutes and " +
                 parseInt(totalWorkoutTimeInSeconds % 60) + " seconds";
 
-            workoutHTML = `<div class='row exercise-box'>
+            workoutHTML = `<div class='row exercise-box my-4'>
                                     <div class="col-3">
                                         <div class="centered-div">
                                             Workout name:&nbsp <b> ${workout.name} </b>
