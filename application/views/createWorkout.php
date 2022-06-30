@@ -21,6 +21,10 @@
     </div>
 
     <div id="exercise-selection">
+        <div class="row float-right">
+            <button class="go-to-add-exercise-page-button d-inline-block"
+                id="change-name-button">Change workout name</button>
+        </div>
         <h1 id="page-title">
         </h1>
 
@@ -80,6 +84,7 @@
     const createWorkoutViewHandler = {
         workoutNameDiv: $('workout-name-input'),
         exerciseSelectionDiv: $('exercise-selection'),
+        changeNameButton: $('change-name-button'),
         confirmWorkoutNameButton: $('submit-name-button'),
         workoutNameInput: $('name-input'),
 
@@ -387,6 +392,11 @@
                 this.saveWorkoutRequest.send({
                     data: {'workout': workoutDetailsJson},
                 })
+            });
+
+            this.changeNameButton.addEvent('click', () => {
+                this.exerciseSelectionDiv.addClass('d-none');
+                this.workoutNameDiv.removeClass('d-none');
             });
 
             this.reorderCheckbox.addEvent('click', () => {

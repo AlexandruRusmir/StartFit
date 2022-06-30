@@ -58,19 +58,20 @@
                 parseInt(totalWorkoutTimeInSeconds % 60) + " seconds";
 
             workoutHTML = `<div class='row exercise-box my-4'>
-                                    <div class="col-3">
-                                        <div class="centered-div">
-                                            Workout name:&nbsp <b> ${workout.name} </b>
+                                    <div class="col-12 col-lg-3">
+                                        <div class="centered-div flex-column">
+                                            <p><b> ${workout.name} </b></p>
+                                            <p>Finished ${workout.timesFinished} times</p>
                                         </div>
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-12 col-lg-4">
                                         <div class="centered-div">
                                             Duration: ${workoutTime}
                                         </div>
                                     </div>
 
-                                    <div class="col-3">
+                                    <div class="col-12 mb-4 mb-lg-0 col-lg-3">
                                         <div class="centered-div flex-column">
                                             <div>`;
             workoutExercises.forEach((exercise) => {
@@ -84,10 +85,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-2">
+                                    <div class="col-12 col-lg-2">
                                         <div class="centered-div">
                                             <div>
-                                                <button class="start-button mb-4">Start workout</button>
+                                                <button class="start-button mr-4 mr-lg-0 mb-4">Start workout</button>
                                                 <button class="delete-button">Delete workout</button>
                                             </div>
                                         </div>
@@ -121,7 +122,6 @@
 
             this.updateAllWorkoutsList();
         },
-
 
         addListenersToButtons: function (workoutElement) {
             workoutElement.querySelector('.delete-button').addEvent('click', (event) => {

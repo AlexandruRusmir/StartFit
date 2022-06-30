@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added exercise order change with drag">
+    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added some finishing touches">
+      <change afterPath="$PROJECT_DIR$/application/classes/Model/FinishedWorkout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/classes/Controller/Register.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/Register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/allAnimationsView.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allAnimationsView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/allExercises.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allExercises.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/classes/Controller/Workouts.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/classes/Controller/Workouts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/createWorkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/createWorkout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/myWorkouts.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/myWorkouts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/styles/workoutPageStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/styles/workoutPageStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/workoutPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/workoutPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/scripts/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/html/scripts/helpers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +134,12 @@
       <workItem from="1655801492844" duration="31951000" />
       <workItem from="1655982816945" duration="55456000" />
       <workItem from="1656391361442" duration="18279000" />
-      <workItem from="1656502633264" duration="3719000" />
+      <workItem from="1656502633264" duration="3792000" />
+      <workItem from="1656520903985" duration="647000" />
+      <workItem from="1656571743183" duration="597000" />
+      <workItem from="1656573560775" duration="2694000" />
+      <workItem from="1656577837604" duration="8908000" />
+      <workItem from="1656594783366" duration="1350000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652860204924</created>
@@ -346,7 +351,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656420672390</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="added some finishing touches">
+      <created>1656520419009</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1656520419009</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +388,6 @@
       <path value="$PROJECT_DIR$/modules/userguide" />
       <path value="$PROJECT_DIR$/system" />
     </ignored-roots>
-    <MESSAGE value="second" />
     <MESSAGE value="started admin and superadmin extra pages" />
     <MESSAGE value="added search to handle-users page" />
     <MESSAGE value="added category page 1.0" />
@@ -401,6 +412,7 @@
     <MESSAGE value="finished timer class" />
     <MESSAGE value="finished workout page" />
     <MESSAGE value="added exercise order change with drag" />
-    <option name="LAST_COMMIT_MESSAGE" value="added exercise order change with drag" />
+    <MESSAGE value="added some finishing touches" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some finishing touches" />
   </component>
 </project>

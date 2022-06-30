@@ -167,6 +167,22 @@ class Controller_Workouts extends Controller_UserStandard
         $this->response->body($workoutDetails);
     }
 
+    public function action_finish_workout()
+    {
+        $workoutId = $this->request->post('id');
+
+        $workout = new Model_Workout($workoutId);
+        if (!$workout->loaded() || $workout->getUserID() != Auth::instance()->get_user()->id) {
+            $this->response->status(404);
+            $this->response->body('No workout with this ID registered for this account!');
+            return;
+        }
+
+        $finishedWorkout = new Model_FinishedWorkout();
+        $finishedWorkout->setWorkoutID($workoutId);
+        $finishedWorkout->save();
+    }
+
     private function saveWorkout(Model_Workout $workoutModel, $workoutDetails): void
     {
         $workoutExercises = $workoutDetails->workoutExercises;
@@ -210,10 +226,12 @@ class Controller_Workouts extends Controller_UserStandard
         $workoutId = $workout->id;
         $workoutObject->id = $workoutId;
         $workoutObject->name = $workout->name;
+        $workoutObject->timesFinished = count((new Model_FinishedWorkout())->where('workout_id', '=', $workoutId)
+            ->find_all());
 
         $exercisesArray = [];
         $workoutExercises = (new Model_WorkoutExercise())->where('workout_id', '=', "{$workoutId}")->
-            order_by('order')->find_all();
+        order_by('order')->find_all();
 
         foreach ($workoutExercises as $workoutExercise) {
             $exercise = new Model_Exercise($workoutExercise->exercise_id);

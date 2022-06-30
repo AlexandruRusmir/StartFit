@@ -40,6 +40,7 @@ $receivedID = $receivedID ?? 0;
         breakTime: '<?= HTML::image('html/images/break.svg',
             array('alt' => 'Break Time', 'class' => 'break-time-picture'));?>',
 
+        workoutID: null,
         workoutExercises: [],
 
         workoutExerciseOrder: 0,
@@ -53,7 +54,7 @@ $receivedID = $receivedID ?? 0;
             method: 'post',
             url: "<?= URL::site('workouts/get_workout_details') ?>",
             onSuccess: function (responseJSON, responseText) {
-                console.log(responseJSON)
+                workoutViewHandler.workoutID = responseJSON.id;
                 workoutViewHandler.workoutExercises = responseJSON.exercisesArray;
 
                 workoutViewHandler.pageTitle.innerText = `Workout: ${responseJSON.name}`;
@@ -83,9 +84,52 @@ $receivedID = $receivedID ?? 0;
                     `;
         },
 
+        getWorkoutRandomMessage: function () {
+            let randomMessageNumber = getRandomSingleDigitInt();
+            if(randomMessageNumber === 0) {
+                return 'Keep your squats low and your standards high.'
+            }
+
+            if (randomMessageNumber === 1) {
+                return 'Break time! Grab a water sip.';
+            }
+
+            if (randomMessageNumber === 2) {
+                return 'Exercise is a blessing, not a chore.';
+            }
+
+            if (randomMessageNumber === 3) {
+                return 'The best view comes after the hardest climb.';
+            }
+
+            if (randomMessageNumber === 4) {
+                return 'What seems so hard now will one day be your warm up.';
+            }
+
+            if (randomMessageNumber === 5) {
+                return 'Your body won’t go where your mind doesn’t push it.';
+            }
+
+            if (randomMessageNumber === 6) {
+                return 'Break time! Get ready for the next exercise.';
+            }
+
+            if (randomMessageNumber === 7) {
+                return 'Biceps are like ornaments on a Christmas tree.';
+            }
+
+            if (randomMessageNumber === 8) {
+                return 'You don’t get the butt you want by sitting on it.';
+            }
+
+            if (randomMessageNumber === 9) {
+                return 'When life knocks you down, do a burpee.';
+            }
+        },
+
         getBreakTimeDisplay: function () {
             return `<div class="centered-div w-100 flex-column">
-                        <h3 class="mb-5">Break time! Grab a water sip.</h3>
+                        <h3 class="mb-5">${this.getWorkoutRandomMessage()}</h3>
                         ${this.breakTime}
                     </div>
             `;
@@ -137,7 +181,10 @@ $receivedID = $receivedID ?? 0;
                 let endMainDisplayHtml = workoutViewHandler.createWorkoutEndDisplay();
                 let endMainDisplayElement = createElementFromHTML(endMainDisplayHtml);
                 endMainDisplayElement.querySelector('#back-to-workouts').addEvent('click', () => {
-                   window.location.href = "<?= URL::site('workouts/my_workouts'); ?>";
+                    console.log(workoutViewHandler.workoutID);
+                    workoutViewHandler.sendWorkoutEndRequest.send({
+                        data: {'id': workoutViewHandler.workoutID}
+                    });
                 });
                 workoutViewHandler.mainDisplay.appendChild(endMainDisplayElement)
 
@@ -174,6 +221,14 @@ $receivedID = $receivedID ?? 0;
                 workoutViewHandler.timerEnd, workoutViewHandler.playButton, workoutViewHandler.pauseButton,
                 workoutViewHandler.resetButton, workoutViewHandler.skipButton).start();
         },
+
+        sendWorkoutEndRequest: new Request({
+            method: 'post',
+            url: "<?= URL::site('workouts/finish_workout') ?>",
+            onComplete: function () {
+                window.location.href = "<?= URL::site('workouts/my_workouts'); ?>";
+            }
+        }),
 
         init: function () {
             this.validateWorkoutIdRequest.send({
