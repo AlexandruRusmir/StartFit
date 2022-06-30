@@ -79,9 +79,8 @@
 
         animationRemove: function (event) {
             toBeDeletedAnimation = event.target.result;
-
             for (let i = 0; i < this.allAnimations.length; i++) {
-                if (this.allAnimations[i].id == toBeDeletedAnimation.id) {
+                if (this.allAnimations[i].id == toBeDeletedAnimation) {
                     this.allAnimations.splice(i, 1);
                 }
             }

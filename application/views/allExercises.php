@@ -96,7 +96,7 @@
             let toBeDeletedExercise = event.target.result;
 
             for (let i = 0; i < this.allExercises.length; i++) {
-                if (this.allExercises[i].id == toBeDeletedExercise.id) {
+                if (this.allExercises[i].id == toBeDeletedExercise) {
                     this.allExercises.splice(i, 1);
                 }
             }
@@ -111,8 +111,8 @@
                     return;
                 }
 
-                this.exerciseRemove(event);
-                this.deleteExerciseByID.send({
+                exercisesViewHandler.exerciseRemove(event);
+                exercisesViewHandler.deleteExerciseByID.send({
                     data: {'id': event.target.result}
                 });
             });

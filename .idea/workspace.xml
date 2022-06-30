@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added some finishing touches 2.0">
+    <list default="true" id="db104c49-8556-4852-8d67-5d27dd8f8360" name="Changes" comment="added some finishing touches 3.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/addAnimationView.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/addAnimationView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/allAnimationsView.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allAnimationsView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/allExercises.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/allExercises.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/styles/exerciseStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/styles/exerciseStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/styles/workoutPageStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/html/styles/workoutPageStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +137,7 @@
       <workItem from="1656571743183" duration="597000" />
       <workItem from="1656573560775" duration="2694000" />
       <workItem from="1656577837604" duration="8908000" />
-      <workItem from="1656594783366" duration="2738000" />
+      <workItem from="1656594783366" duration="3963000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652860204924</created>
@@ -360,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656596176567</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="added some finishing touches 3.0">
+      <created>1656615086018</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1656615086018</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,7 +400,6 @@
       <path value="$PROJECT_DIR$/modules/userguide" />
       <path value="$PROJECT_DIR$/system" />
     </ignored-roots>
-    <MESSAGE value="added search to handle-users page" />
     <MESSAGE value="added category page 1.0" />
     <MESSAGE value="added category page 2.0" />
     <MESSAGE value="added category search in add exercise page" />
@@ -415,6 +424,7 @@
     <MESSAGE value="added exercise order change with drag" />
     <MESSAGE value="added some finishing touches" />
     <MESSAGE value="added some finishing touches 2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some finishing touches 2.0" />
+    <MESSAGE value="added some finishing touches 3.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some finishing touches 3.0" />
   </component>
 </project>
