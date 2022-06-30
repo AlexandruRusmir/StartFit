@@ -56,7 +56,7 @@
         animationPostRequest: new Request({
             url: '<?= URL::site('exerciseHandling/add_animation')?>',
             method: 'post',
-            onSucces: (response) => {
+            onSuccess: (response) => {
                 animationsViewHandler.animationNameInput.value = '';
                 animationsViewHandler.animationURLInput.value = '';
 
